@@ -1,0 +1,202 @@
+rules_version = '2';
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Global Safety Net: Default-deny all reads and writes
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    // --- GLOBAL HELPERS ---
+    function isValidId(id) {
+      return id is string && id.size() >= 1 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isSignedIn() && request.auth.uid == userId;
+    }
+
+    // --- VALIDATION BLUEPRINTS ---
+    function isValidUserProfile(data) {
+      return data.userId is string && data.userId == request.auth.uid &&
+             data.displayName is string && data.displayName.size() >= 1 && data.displayName.size() <= 100 &&
+             data.planTier is string && data.planTier in ['free', 'plus_49'] &&
+             data.waterGlasses is int && data.waterGlasses >= 0 && data.waterGlasses <= 20 &&
+             data.waterGoal is int && data.waterGoal >= 1 && data.waterGoal <= 20 &&
+             data.steps is int && data.steps >= 0 && data.steps <= 100000 &&
+             data.stepsGoal is int && data.stepsGoal >= 1000 && data.stepsGoal <= 50000 &&
+             data.streakDays is int && data.streakDays >= 0 && data.streakDays <= 3650 &&
+             data.activeCheckIn is string && data.activeCheckIn.size() <= 64 &&
+             data.createdAt is timestamp && data.createdAt <= request.time &&
+             data.updatedAt is timestamp && data.updatedAt <= request.time;
+    }
+
+    function isValidBpReading(data) {
+      return data.userId is string && data.userId == request.auth.uid &&
+             data.systolic is int && data.systolic >= 40 && data.systolic <= 300 &&
+             data.diastolic is int && data.diastolic >= 30 && data.diastolic <= 200 &&
+             (!('pulse' in data) || (data.pulse is int && data.pulse >= 30 && data.pulse <= 220)) &&
+             data.category is string && data.category.size() >= 1 && data.category.size() <= 40 &&
+             data.createdAt is timestamp && data.createdAt <= request.time &&
+             data.updatedAt is timestamp && data.updatedAt <= request.time;
+    }
+
+    function isValidRoutineTask(data) {
+      return data.userId is string && data.userId == request.auth.uid &&
+             data.title is string && data.title.size() >= 1 && data.title.size() <= 120 &&
+             data.subtitle is string && data.subtitle.size() <= 160 &&
+             data.period is string && data.period in ['morning', 'evening', 'nutrition'] &&
+             data.done is bool &&
+             data.createdAt is timestamp && data.createdAt <= request.time &&
+             data.updatedAt is timestamp && data.updatedAt <= request.time;
+    }
+
+    function isValidConsultNote(data) {
+      return data.userId is string && data.userId == request.auth.uid &&
+             data.problemKey is string && data.problemKey.size() >= 1 && data.problemKey.size() <= 48 &&
+             data.summary is string && data.summary.size() >= 1 && data.summary.size() <= 500 &&
+             data.durationLabel is string && data.durationLabel.size() >= 1 && data.durationLabel.size() <= 40 &&
+             data.specialist is string && data.specialist.size() >= 1 && data.specialist.size() <= 100 &&
+             data.doctorName is string && data.doctorName.size() >= 1 && data.doctorName.size() <= 100 &&
+             data.createdAt is timestamp && data.createdAt <= request.time &&
+             data.updatedAt is timestamp && data.updatedAt <= request.time;
+    }
+
+    // --- COLLECTION RULES ---
+    match /users/{userId} {
+      allow get: if isValidId(userId) && isOwner(userId);
+      allow list: if false;
+
+      allow create: if isValidId(userId) &&
+                       isOwner(userId) &&
+                       incoming().keys().hasAll([
+                         'userId', 'displayName', 'planTier', 'waterGlasses', 'waterGoal',
+                         'steps', 'stepsGoal', 'streakDays', 'activeCheckIn', 'createdAt', 'updatedAt'
+                       ]) &&
+                       incoming().keys().hasOnly([
+                         'userId', 'displayName', 'planTier', 'waterGlasses', 'waterGoal',
+                         'steps', 'stepsGoal', 'streakDays', 'activeCheckIn', 'createdAt', 'updatedAt'
+                       ]) &&
+                       isValidUserProfile(incoming());
+
+      allow update: if isValidId(userId) &&
+                       isOwner(userId) &&
+                       isValidUserProfile(incoming()) &&
+                       incoming().userId == existing().userId &&
+                       incoming().createdAt == existing().createdAt && (
+                         // Action: Update daily hydration, steps, streak, or check-in
+                         incoming().diff(existing()).affectedKeys().hasOnly([
+                           'waterGlasses', 'waterGoal', 'steps', 'stepsGoal', 'streakDays', 'activeCheckIn', 'updatedAt'
+                         ]) ||
+                         // Action: Update plan tier
+                         incoming().diff(existing()).affectedKeys().hasOnly(['planTier', 'updatedAt']) ||
+                         // Action: Update display name
+                         incoming().diff(existing()).affectedKeys().hasOnly(['displayName', 'updatedAt'])
+                       );
+
+      allow delete: if isValidId(userId) && isOwner(userId);
+
+      // Subcollection: Blood pressure readings
+      match /bpReadings/{readingId} {
+        allow get: if isValidId(userId) && isValidId(readingId) && isOwner(userId);
+        allow list: if isOwner(userId);
+
+        allow create: if isValidId(userId) &&
+                         isValidId(readingId) &&
+                         isOwner(userId) &&
+                         incoming().keys().hasAll([
+                           'userId', 'systolic', 'diastolic', 'category', 'createdAt', 'updatedAt'
+                         ]) &&
+                         incoming().keys().hasOnly([
+                           'userId', 'systolic', 'diastolic', 'pulse', 'category', 'createdAt', 'updatedAt'
+                         ]) &&
+                         isValidBpReading(incoming());
+
+        allow update: if isValidId(userId) &&
+                         isValidId(readingId) &&
+                         isOwner(userId) &&
+                         isValidBpReading(incoming()) &&
+                         incoming().userId == existing().userId &&
+                         incoming().createdAt == existing().createdAt &&
+                         incoming().diff(existing()).affectedKeys().hasOnly([
+                           'systolic', 'diastolic', 'pulse', 'category', 'updatedAt'
+                         ]);
+
+        allow delete: if isValidId(userId) && isValidId(readingId) && isOwner(userId);
+      }
+
+      // Subcollection: Daily care routine tasks
+      match /routineTasks/{taskId} {
+        allow get: if isValidId(userId) && isValidId(taskId) && isOwner(userId);
+        allow list: if isOwner(userId);
+
+        allow create: if isValidId(userId) &&
+                         isValidId(taskId) &&
+                         isOwner(userId) &&
+                         incoming().keys().hasAll([
+                           'userId', 'title', 'subtitle', 'period', 'done', 'createdAt', 'updatedAt'
+                         ]) &&
+                         incoming().keys().hasOnly([
+                           'userId', 'title', 'subtitle', 'period', 'done', 'createdAt', 'updatedAt'
+                         ]) &&
+                         isValidRoutineTask(incoming());
+
+        allow update: if isValidId(userId) &&
+                         isValidId(taskId) &&
+                         isOwner(userId) &&
+                         isValidRoutineTask(incoming()) &&
+                         incoming().userId == existing().userId &&
+                         incoming().createdAt == existing().createdAt && (
+                           // Action: Toggle task completion
+                           incoming().diff(existing()).affectedKeys().hasOnly(['done', 'updatedAt']) ||
+                           // Action: Edit task details
+                           incoming().diff(existing()).affectedKeys().hasOnly(['title', 'subtitle', 'period', 'done', 'updatedAt'])
+                         );
+
+        allow delete: if isValidId(userId) && isValidId(taskId) && isOwner(userId);
+      }
+
+      // Subcollection: Doctor consultation request notes
+      match /consultNotes/{noteId} {
+        allow get: if isValidId(userId) && isValidId(noteId) && isOwner(userId);
+        allow list: if isOwner(userId);
+
+        allow create: if isValidId(userId) &&
+                         isValidId(noteId) &&
+                         isOwner(userId) &&
+                         incoming().keys().hasAll([
+                           'userId', 'problemKey', 'summary', 'durationLabel', 'specialist', 'doctorName', 'createdAt', 'updatedAt'
+                         ]) &&
+                         incoming().keys().hasOnly([
+                           'userId', 'problemKey', 'summary', 'durationLabel', 'specialist', 'doctorName', 'createdAt', 'updatedAt'
+                         ]) &&
+                         isValidConsultNote(incoming());
+
+        allow update: if isValidId(userId) &&
+                         isValidId(noteId) &&
+                         isOwner(userId) &&
+                         isValidConsultNote(incoming()) &&
+                         incoming().userId == existing().userId &&
+                         incoming().createdAt == existing().createdAt &&
+                         incoming().diff(existing()).affectedKeys().hasOnly([
+                           'problemKey', 'summary', 'durationLabel', 'specialist', 'doctorName', 'updatedAt'
+                         ]);
+
+        allow delete: if isValidId(userId) && isValidId(noteId) && isOwner(userId);
+      }
+    }
+  }
+}

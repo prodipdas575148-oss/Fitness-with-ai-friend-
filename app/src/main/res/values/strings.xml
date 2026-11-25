@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">HealthMate AI</string>
+    <string name="header_subtitle">Daily wellness guide</string>
+    <string name="fitness_section_title">Daily fitness activity</string>
+    <string name="quick_tips_section_title">Quick health tips</string>
+    <string name="safety_disclaimer">HealthMate AI shares educational wellness tips only. Always consult a healthcare professional for medical symptoms.</string>
+    <string name="disclaimer_banner">HealthMate AI shares educational wellness information only. It does not replace a doctor or prescribe prescription medicines.</string>
+    <string name="urgent_care_banner">Chest pain, trouble breathing, high fever with stiff neck, or sudden swelling? Tap to consult a doctor urgently.</string>
+    <string name="search_tips_placeholder">Search posture, hydration, sleep, energy...</string>
+</resources>

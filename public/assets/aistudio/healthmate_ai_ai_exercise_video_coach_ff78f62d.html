@@ -1,0 +1,553 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Exercise Video Coach — HealthMate AI</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'light-primary': '#006445',
+        'light-on-primary': '#FFFFFF',
+        'light-primary-container': '#1A7F5A',
+        'light-on-primary-container': '#D3FFE6',
+        'light-secondary': '#446554',
+        'light-on-secondary': '#FFFFFF',
+        'light-secondary-container': '#C6EBD5',
+        'light-on-secondary-container': '#4A6B5A',
+        'light-tertiary': '#8F3E3E',
+        'light-on-tertiary': '#FFFFFF',
+        'light-tertiary-container': '#AD5655',
+        'light-on-tertiary-container': '#FFF2F1',
+        'light-error': '#BA1A1A',
+        'light-on-error': '#FFFFFF',
+        'light-error-container': '#FFDAD6',
+        'light-on-error-container': '#93000A',
+        'light-background': '#F6FBF5',
+        'light-on-background': '#181D1A',
+        'light-surface': '#F6FBF5',
+        'light-surface-dim': '#D7DBD6',
+        'light-surface-bright': '#F6FBF5',
+        'light-surface-container-lowest': '#FFFFFF',
+        'light-surface-container-low': '#F0F5EF',
+        'light-surface-container': '#EBEFEA',
+        'light-surface-container-high': '#E5E9E4',
+        'light-surface-container-highest': '#DFE4DE',
+        'light-on-surface': '#181D1A',
+        'light-surface-variant': '#DAE5DC',
+        'light-on-surface-variant': '#3E4943',
+        'light-outline': '#6E7A72',
+        'light-outline-variant': '#BEC9C1',
+        'light-inverse-surface': '#2D322E',
+        'light-inverse-on-surface': '#EEF2EC',
+        'light-inverse-primary': '#7DD8AD',
+        'light-shadow': '#000000',
+        'light-scrim': '#000000',
+        'dark-primary': '#7DD8AD',
+        'dark-on-primary': '#003825',
+        'dark-primary-container': '#1A7F5A',
+        'dark-on-primary-container': '#D3FFE6',
+        'dark-secondary': '#ABCFBA',
+        'dark-on-secondary': '#163628',
+        'dark-secondary-container': '#2F5040',
+        'dark-on-secondary-container': '#9DC1AC',
+        'dark-tertiary': '#FFB3B0',
+        'dark-on-tertiary': '#5C181A',
+        'dark-tertiary-container': '#AD5655',
+        'dark-on-tertiary-container': '#FFF2F1',
+        'dark-error': '#FFB4AB',
+        'dark-on-error': '#690005',
+        'dark-error-container': '#93000A',
+        'dark-on-error-container': '#FFDAD6',
+        'dark-background': '#101412',
+        'dark-on-background': '#DFE4DE',
+        'dark-surface': '#101412',
+        'dark-surface-dim': '#101412',
+        'dark-surface-bright': '#353A37',
+        'dark-surface-container-lowest': '#0A0F0C',
+        'dark-surface-container-low': '#181D1A',
+        'dark-surface-container': '#1C211E',
+        'dark-surface-container-high': '#262B28',
+        'dark-surface-container-highest': '#313632',
+        'dark-on-surface': '#DFE4DE',
+        'dark-surface-variant': '#3E4943',
+        'dark-on-surface-variant': '#BEC9C1',
+        'dark-outline': '#88938B',
+        'dark-outline-variant': '#3E4943',
+        'dark-inverse-surface': '#DFE4DE',
+        'dark-inverse-on-surface': '#2D322E',
+        'dark-inverse-primary': '#006C4A',
+        'dark-shadow': '#000000',
+        'dark-scrim': '#000000',
+      },
+      borderRadius: {
+        'sm': '4px',
+        'DEFAULT': '8px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '24px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '12px',
+        'gutter-lg': '16px',
+        'gutter-xl': '24px',
+        'section': '32px',
+        'page-margin': '16px',
+      },
+      fontFamily: {
+        'display': ['"Alata"', 'sans-serif'],
+        'headline': ['"Alata"', 'sans-serif'],
+        'title': ['"Instrument Sans"', 'sans-serif'],
+        'body': ['"Instrument Sans"', 'sans-serif'],
+        'label': ['"Instrument Sans"', 'sans-serif'],
+        'mono': ['"Source Code Pro"', 'monospace'],
+      },
+      fontSize: {
+        'display-lg': ['40px', { lineHeight: '48px', letterSpacing: '-0.5px', fontWeight: '400' }],
+        'display-lg-mobile': ['28px', { lineHeight: '34px', letterSpacing: '-0.25px', fontWeight: '400' }],
+        'headline-lg': ['34px', { lineHeight: '42px', letterSpacing: '-0.25px', fontWeight: '400' }],
+        'headline-lg-mobile': ['24px', { lineHeight: '30px', letterSpacing: '0px', fontWeight: '400' }],
+        'headline-md': ['20px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '400' }],
+        'title-lg': ['18px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '22px', letterSpacing: '0px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0.1px', fontWeight: '600' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.25px', fontWeight: '500' }],
+        'mono-md': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '500' }],
+      },
+      transitionDuration: {
+        'state-change': '120ms',
+        'surface-enter': '240ms',
+        'surface-exit': '160ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.3, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Alata&amp;family=Instrument+Sans:wght@400;500;600;700&amp;family=Source+Code+Pro:wght@500&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined, .material-symbols-rounded, .material-symbols-sharp, .material-icons {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      line-height: 1 !important;
+      box-sizing: content-box;
+      overflow: hidden;
+      white-space: nowrap;
+      direction: ltr;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body class="bg-light-surface text-light-on-surface font-body antialiased">
+  <div class="min-h-[884px] flex flex-col bg-light-surface max-w-md mx-auto relative" data-stitch-vh="min-h-[884px]===min-h-screen">
+
+    <!-- Contextual Header -->
+    <header class="sticky top-0 z-30 bg-light-surface-container-lowest border-b border-light-outline-variant px-page-margin py-gutter-md flex items-center justify-between gap-gutter-md">
+      <div class="flex items-center gap-gutter-sm">
+        <!-- COMPONENT: button-icon -->
+        <button data-component-id="button-icon" data-component-type="button" data-component-variant="icon" type="button" aria-label="Go back" class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-light-surface-container-low text-light-on-surface border border-light-outline-variant transition-colors duration-state-change ease-state-change hover:bg-light-secondary-container">
+          <span class="material-symbols-outlined text-title-md" aria-hidden="true">arrow_back</span>
+        </button>
+        <div class="flex flex-col">
+          <span class="font-headline text-title-md text-light-on-surface leading-tight" data-design-text-token="title-md">AI Exercise Video</span>
+          <span class="font-label text-label-sm text-light-on-surface-variant leading-tight" data-design-text-token="label-sm">Man &amp; Woman AI coach</span>
+        </div>
+      </div>
+
+      <span class="inline-flex items-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-light-surface-container-low text-light-primary font-label text-label-sm">
+        <span class="material-symbols-outlined text-body-md" aria-hidden="true">lock</span>
+        <span data-design-text-token="label-sm">Private</span>
+      </span>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 px-page-margin pt-gutter-lg pb-section flex flex-col gap-gutter-xl">
+
+      <!-- Intro & AI Coach Gender Toggle -->
+      <section aria-label="Choose AI exercise coach" class="flex flex-col gap-gutter-md">
+        <div class="flex flex-col gap-gutter-xs">
+          <h1 class="font-headline text-headline-lg-mobile text-light-on-surface text-balance" data-design-text-token="headline-lg-mobile">
+            Watch AI form videos
+          </h1>
+          <p class="font-body text-body-md text-light-on-surface-variant text-pretty" data-design-text-token="body-md">
+            Switch between Man and Woman AI trainers for step-by-step exercise demos and posture cues.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-2 gap-gutter-sm" role="group" aria-label="Select AI trainer">
+          <!-- COMPONENT: chip-filter-selected -->
+          <button id="coach-man-btn" data-component-id="chip-filter-selected" data-component-type="chip" data-component-variant="filter" aria-pressed="true" type="button" data-coach="man" class="coach-toggle-btn inline-flex items-center justify-center gap-gutter-xs px-gutter-md py-gutter-sm rounded-full bg-light-secondary-container border border-light-primary text-light-on-secondary-container font-label text-label-md transition-colors duration-state-change">
+            <span class="material-symbols-outlined text-body-md" aria-hidden="true">man</span>
+            <span data-design-text-token="label-md">AI Man (Aarav)</span>
+          </button>
+
+          <!-- COMPONENT: chip-action -->
+          <button id="coach-woman-btn" data-component-id="chip-action" data-component-type="chip" data-component-variant="action" aria-pressed="false" type="button" data-coach="woman" class="coach-toggle-btn inline-flex items-center justify-center gap-gutter-xs px-gutter-md py-gutter-sm rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-label text-label-md transition-colors duration-state-change hover:bg-light-secondary-container">
+            <span class="material-symbols-outlined text-body-md text-light-primary" aria-hidden="true">woman</span>
+            <span data-design-text-token="label-md">AI Woman (Maya)</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- AI Video Player Stage -->
+      <section aria-label="AI Exercise Video Player" class="flex flex-col gap-gutter-md">
+        <div class="rounded-xl overflow-hidden border border-light-outline-variant bg-light-surface-container-lowest flex flex-col">
+          <!-- 16:9 Video Frame -->
+          <div class="relative aspect-video bg-light-surface-container-low overflow-hidden">
+            <img id="video-coach-img" src="https://lh3.googleusercontent.com/aida/ALJJyrCJCNVN2iRgmif2bGNCFNqo5s5r2d21mr6yszmT5BPLpdaTYWAUnYFPVZbffLJf7cyGucqGEzJWCfzQsqrBiHckrrrctlPqI8SEIRgUfTrvh-23k-GbdmO-GBWdKTLQq03NFA8HO1vJU8kaatQ3XGrxuVjMl5_4MbBuCJ7AtGAgO0MZ9Au7qHi3KSotlFT87xsg22b9GfPxOBDiBRcGvq79OYrBu8rj-m4_IS2p31_19aD0wbYJepJcVGXLbFrQ" alt="AI Man Coach Aarav demonstrating bodyweight squat form" class="w-full h-full object-cover">
+
+            <!-- Top Overlay Badges -->
+            <div class="absolute top-3 left-3 right-3 flex items-center justify-between gap-gutter-sm">
+              <span class="inline-flex items-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-light-surface-container-lowest text-light-on-surface border border-light-outline-variant font-label text-label-sm">
+                <span class="material-symbols-outlined text-body-md text-light-primary" aria-hidden="true">smart_display</span>
+                <span id="player-coach-badge" data-design-text-token="label-sm">AI Man • Aarav</span>
+              </span>
+
+              <button id="camera-angle-btn" type="button" class="inline-flex items-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-light-surface-container-lowest text-light-on-surface border border-light-outline-variant font-label text-label-sm transition-colors duration-state-change hover:bg-light-secondary-container">
+                <span class="material-symbols-outlined text-body-md text-light-primary" aria-hidden="true">360</span>
+                <span id="camera-angle-label" data-design-text-token="label-sm">Front view</span>
+              </button>
+            </div>
+
+            <!-- Center Play / Pause Button -->
+            <button id="play-pause-btn" type="button" aria-label="Play or pause AI exercise video" class="absolute inset-0 m-auto w-12 h-12 rounded-full bg-light-primary text-light-on-primary flex items-center justify-center transition-colors duration-state-change hover:bg-light-primary-container">
+              <span id="play-pause-icon" class="material-symbols-outlined text-headline-md" style="font-variation-settings: &#39;FILL&#39; 1;" aria-hidden="true">play_arrow</span>
+            </button>
+          </div>
+
+          <!-- Solid Scrubber & Rep Counter Bar -->
+          <div class="bg-light-surface-container-low border-b border-light-outline-variant px-gutter-md py-gutter-sm flex flex-col gap-gutter-xs">
+            <div class="flex items-center justify-between gap-gutter-sm text-light-on-surface">
+              <span id="video-time-label" class="font-mono text-label-sm tabular-nums" data-design-text-token="label-sm">00:12 / 00:45</span>
+              <span id="video-rep-label" class="font-mono text-label-sm text-light-primary tabular-nums" data-design-text-token="label-sm">Rep 3 / 12</span>
+            </div>
+            <div class="w-full h-1.5 rounded-full bg-light-outline-variant overflow-hidden">
+              <div id="video-progress-bar" class="h-full w-1/4 rounded-full bg-light-primary"></div>
+            </div>
+          </div>
+
+          <!-- Active Exercise Info & Controls -->
+          <div class="p-gutter-md flex flex-col gap-gutter-sm">
+            <div class="flex items-center justify-between gap-gutter-sm">
+              <div class="flex flex-col">
+                <h2 id="active-exercise-title" class="font-title text-title-md text-light-on-surface" data-design-text-token="title-md">Bodyweight Squat</h2>
+                <span id="active-exercise-meta" class="font-body text-body-sm text-light-on-surface-variant" data-design-text-token="body-sm">Legs &amp; glutes • 3 sets × 12 reps</span>
+              </div>
+              <button id="speed-btn" type="button" class="shrink-0 px-gutter-sm py-gutter-xs rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-mono text-label-sm tabular-nums">
+                <span id="speed-label" data-design-text-token="label-sm">1.0x</span>
+              </button>
+            </div>
+
+            <div class="bg-light-surface-container-low rounded-md p-gutter-sm flex items-start gap-gutter-sm">
+              <span class="material-symbols-outlined text-title-md text-light-primary shrink-0 mt-0.5" aria-hidden="true">record_voice_over</span>
+              <p id="active-exercise-cue" class="font-body text-body-sm text-light-on-surface-variant text-pretty" data-design-text-token="body-sm">
+                <strong>AI Voice Cue:</strong> Keep chest lifted, push hips back as if sitting, and exhale smoothly as you stand up.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Man & Woman AI Exercise Video Library -->
+      <section aria-label="AI Exercise Video Library" class="flex flex-col gap-gutter-md">
+        <div class="flex items-baseline justify-between gap-gutter-sm">
+          <h2 class="font-headline text-headline-md text-light-on-surface" data-design-text-token="headline-md">Exercise video library</h2>
+          <span class="font-mono text-mono-md text-light-primary tabular-nums" data-design-text-token="mono-md">5 demos</span>
+        </div>
+
+        <ul id="video-library-list" class="flex flex-col gap-gutter-sm">
+          <li class="rounded-lg bg-light-surface-container-lowest border border-light-outline-variant p-gutter-md flex flex-col gap-gutter-sm">
+            <div class="flex items-center justify-between gap-gutter-sm">
+              <div class="flex flex-col">
+                <span class="font-title text-title-md text-light-on-surface" data-design-text-token="title-md">Bodyweight Squat</span>
+                <span class="font-body text-body-sm text-light-on-surface-variant" data-design-text-token="body-sm">Legs &amp; glutes • 00:45 demo</span>
+              </div>
+              <span class="font-mono text-label-sm text-light-primary tabular-nums shrink-0" data-design-text-token="label-sm">3 × 12</span>
+            </div>
+            <div class="grid grid-cols-2 gap-gutter-sm">
+              <button type="button" data-ex="squat" data-coach="man" class="watch-demo-btn inline-flex items-center justify-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-light-secondary-container text-light-on-secondary-container font-label text-label-sm">
+                <span class="material-symbols-outlined text-body-md" aria-hidden="true">play_circle</span>
+                <span data-design-text-token="label-sm">Man AI Video</span>
+              </button>
+              <button type="button" data-ex="squat" data-coach="woman" class="watch-demo-btn inline-flex items-center justify-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-label text-label-sm hover:bg-light-secondary-container">
+                <span class="material-symbols-outlined text-body-md text-light-primary" aria-hidden="true">play_circle</span>
+                <span data-design-text-token="label-sm">Woman AI Video</span>
+              </button>
+            </div>
+          </li>
+
+          <li class="rounded-lg bg-light-surface-container-lowest border border-light-outline-variant p-gutter-md flex flex-col gap-gutter-sm">
+            <div class="flex items-center justify-between gap-gutter-sm">
+              <div class="flex flex-col">
+                <span class="font-title text-title-md text-light-on-surface" data-design-text-token="title-md">Treadmill Incline Walk</span>
+                <span class="font-body text-body-sm text-light-on-surface-variant" data-design-text-token="body-sm">Fat burn cardio • 00:50 demo</span>
+              </div>
+              <span class="font-mono text-label-sm text-light-primary tabular-nums shrink-0" data-design-text-token="label-sm">20 min</span>
+            </div>
+            <div class="grid grid-cols-2 gap-gutter-sm">
+              <button type="button" data-ex="incline" data-coach="man" class="watch-demo-btn inline-flex items-center justify-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-label text-label-sm hover:bg-light-secondary-container">
+                <span class="material-symbols-outlined text-body-md text-light-primary" aria-hidden="true">play_circle</span>
+                <span data-design-text-token="label-sm">Man AI Video</span>
+              </button>
+              <button type="button" data-ex="incline" data-coach="woman" class="watch-demo-btn inline-flex items-center justify-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-label text-label-sm hover:bg-light-secondary-container">
+                <span class="material-symbols-outlined text-body-md text-light-primary" aria-hidden="true">play_circle</span>
+                <span data-design-text-token="label-sm">Woman AI Video</span>
+              </button>
+            </div>
+          </li>
+
+          <li class="rounded-lg bg-light-surface-container-lowest border border-light-outline-variant p-gutter-md flex flex-col gap-gutter-sm">
+            <div class="flex items-center justify-between gap-gutter-sm">
+              <div class="flex flex-col">
+                <span class="font-title text-title-md text-light-on-surface" data-design-text-token="title-md">Dumbbell Chest Press</span>
+                <span class="font-body text-body-sm text-light-on-surface-variant" data-design-text-token="body-sm">Upper body • 00:40 demo</span>
+              </div>
+              <span class="font-mono text-label-sm text-light-primary tabular-nums shrink-0" data-design-text-token="label-sm">3 × 10</span>
+            </div>
+            <div class="grid grid-cols-2 gap-gutter-sm">
+              <button type="button" data-ex="chest" data-coach="man" class="watch-demo-btn inline-flex items-center justify-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-label text-label-sm hover:bg-light-secondary-container">
+                <span class="material-symbols-outlined text-body-md text-light-primary" aria-hidden="true">play_circle</span>
+                <span data-design-text-token="label-sm">Man AI Video</span>
+              </button>
+              <button type="button" data-ex="chest" data-coach="woman" class="watch-demo-btn inline-flex items-center justify-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-label text-label-sm hover:bg-light-secondary-container">
+                <span class="material-symbols-outlined text-body-md text-light-primary" aria-hidden="true">play_circle</span>
+                <span data-design-text-token="label-sm">Woman AI Video</span>
+              </button>
+            </div>
+          </li>
+
+          <li class="rounded-lg bg-light-surface-container-lowest border border-light-outline-variant p-gutter-md flex flex-col gap-gutter-sm">
+            <div class="flex items-center justify-between gap-gutter-sm">
+              <div class="flex flex-col">
+                <span class="font-title text-title-md text-light-on-surface" data-design-text-token="title-md">Forearm Plank Hold</span>
+                <span class="font-body text-body-sm text-light-on-surface-variant" data-design-text-token="body-sm">Core &amp; belly fat • 00:35 demo</span>
+              </div>
+              <span class="font-mono text-label-sm text-light-primary tabular-nums shrink-0" data-design-text-token="label-sm">3 × 30s</span>
+            </div>
+            <div class="grid grid-cols-2 gap-gutter-sm">
+              <button type="button" data-ex="plank" data-coach="man" class="watch-demo-btn inline-flex items-center justify-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-label text-label-sm hover:bg-light-secondary-container">
+                <span class="material-symbols-outlined text-body-md text-light-primary" aria-hidden="true">play_circle</span>
+                <span data-design-text-token="label-sm">Man AI Video</span>
+              </button>
+              <button type="button" data-ex="plank" data-coach="woman" class="watch-demo-btn inline-flex items-center justify-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-label text-label-sm hover:bg-light-secondary-container">
+                <span class="material-symbols-outlined text-body-md text-light-primary" aria-hidden="true">play_circle</span>
+                <span data-design-text-token="label-sm">Woman AI Video</span>
+              </button>
+            </div>
+          </li>
+
+          <li class="rounded-lg bg-light-surface-container-lowest border border-light-outline-variant p-gutter-md flex flex-col gap-gutter-sm">
+            <div class="flex items-center justify-between gap-gutter-sm">
+              <div class="flex flex-col">
+                <span class="font-title text-title-md text-light-on-surface" data-design-text-token="title-md">Low-Impact Jumping Jacks</span>
+                <span class="font-body text-body-sm text-light-on-surface-variant" data-design-text-token="body-sm">Full-body warm-up • 00:40 demo</span>
+              </div>
+              <span class="font-mono text-label-sm text-light-primary tabular-nums shrink-0" data-design-text-token="label-sm">3 × 30s</span>
+            </div>
+            <div class="grid grid-cols-2 gap-gutter-sm">
+              <button type="button" data-ex="jacks" data-coach="man" class="watch-demo-btn inline-flex items-center justify-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-label text-label-sm hover:bg-light-secondary-container">
+                <span class="material-symbols-outlined text-body-md text-light-primary" aria-hidden="true">play_circle</span>
+                <span data-design-text-token="label-sm">Man AI Video</span>
+              </button>
+              <button type="button" data-ex="jacks" data-coach="woman" class="watch-demo-btn inline-flex items-center justify-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-label text-label-sm hover:bg-light-secondary-container">
+                <span class="material-symbols-outlined text-body-md text-light-primary" aria-hidden="true">play_circle</span>
+                <span data-design-text-token="label-sm">Woman AI Video</span>
+              </button>
+            </div>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Safety Notice -->
+      <section aria-label="Exercise safety notice">
+        <!-- COMPONENT: alert-error -->
+        <div role="alert" data-component-id="alert-error" data-component-type="alert" data-component-variant="error" class="flex items-start gap-gutter-md p-gutter-md rounded-lg bg-light-error-container text-light-on-error-container">
+          <span class="material-symbols-outlined text-title-lg text-light-on-error-container shrink-0 mt-0.5" aria-hidden="true">emergency</span>
+          <span class="font-body text-body-sm flex-1" data-design-text-token="body-sm">
+            AI videos show general safe form. Stop immediately if you feel sharp joint pain, chest discomfort, or dizziness.
+          </span>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script data-stitch-original-script="f528c0edfbac984c===../../images/ai_man_exercise_coach.jpg|||291f26148c4cf29d===../../images/ai_woman_exercise_coach.jpg">
+    (function () {
+      var coaches = {
+        man: {
+          badge: 'AI Man • Aarav',
+          img: 'https://lh3.googleusercontent.com/aida/ALJJyrCJCNVN2iRgmif2bGNCFNqo5s5r2d21mr6yszmT5BPLpdaTYWAUnYFPVZbffLJf7cyGucqGEzJWCfzQsqrBiHckrrrctlPqI8SEIRgUfTrvh-23k-GbdmO-GBWdKTLQq03NFA8HO1vJU8kaatQ3XGrxuVjMl5_4MbBuCJ7AtGAgO0MZ9Au7qHi3KSotlFT87xsg22b9GfPxOBDiBRcGvq79OYrBu8rj-m4_IS2p31_19aD0wbYJepJcVGXLbFrQ',
+          alt: 'AI Man Coach Aarav demonstrating proper exercise form'
+        },
+        woman: {
+          badge: 'AI Woman • Maya',
+          img: 'https://lh3.googleusercontent.com/aida/ALJJyrBPaFnHHQxgZVKwQGYDx3jJ4Yzs_WLX7dyAd6MFzfwKlYVkzMPyprojT7ggRfanVmy-J33HOUt_UJDY_W87QIJOwVKlYPPdCpIr8FJ71x2ffQfpywbmbSMpqrVAZ_V5xTvdD4yS4HkZKoLTVSNjEMhLr8KUljjJb-_AIjL2AHLyFXWh7_YstKMguodlJT2GDO7ulQZugZSmAqNjihojVczCwf00hrDqq620HwZT4V4WFDciUeyRfrlKMjbtBZUtEyH0',
+          alt: 'AI Woman Coach Maya demonstrating proper exercise form'
+        }
+      };
+
+      var exercises = {
+        squat: {
+          title: 'Bodyweight Squat',
+          meta: 'Legs & glutes • 3 sets × 12 reps',
+          cue: 'Keep chest lifted, push hips back as if sitting, and exhale smoothly as you stand up.',
+          duration: 45,
+          reps: 12
+        },
+        incline: {
+          title: 'Treadmill Incline Walk',
+          meta: 'Fat burn cardio • 20 min steady pace',
+          cue: 'Stand tall without leaning on handrails, land softly mid-foot, and breathe steadily.',
+          duration: 50,
+          reps: 10
+        },
+        chest: {
+          title: 'Dumbbell Chest Press',
+          meta: 'Upper body • 3 sets × 10 reps',
+          cue: 'Lower slowly with elbows at 45° and keep feet flat on the floor as you press up.',
+          duration: 40,
+          reps: 10
+        },
+        plank: {
+          title: 'Forearm Plank Hold',
+          meta: 'Core & belly fat • 3 sets × 30s',
+          cue: 'Keep shoulders over elbows and hips level with your spine; avoid letting your lower back sag.',
+          duration: 35,
+          reps: 8
+        },
+        jacks: {
+          title: 'Low-Impact Jumping Jacks',
+          meta: 'Full-body warm-up • 3 sets × 30s',
+          cue: 'Step one foot out at a time if knees feel sensitive, and keep arms moving overhead smoothly.',
+          duration: 40,
+          reps: 15
+        }
+      };
+
+      var currentCoach = 'man';
+      var currentEx = 'squat';
+      var isPlaying = false;
+      var elapsed = 12;
+      var timerId = null;
+      var speeds = ['0.5x', '1.0x', '1.25x'];
+      var speedIdx = 1;
+      var angles = ['Front view', 'Side view'];
+      var angleIdx = 0;
+
+      var coachImg = document.getElementById('video-coach-img');
+      var coachBadge = document.getElementById('player-coach-badge');
+      var exTitle = document.getElementById('active-exercise-title');
+      var exMeta = document.getElementById('active-exercise-meta');
+      var exCue = document.getElementById('active-exercise-cue');
+      var timeLabel = document.getElementById('video-time-label');
+      var repLabel = document.getElementById('video-rep-label');
+      var progressBar = document.getElementById('video-progress-bar');
+      var playBtn = document.getElementById('play-pause-btn');
+      var playIcon = document.getElementById('play-pause-icon');
+      var speedBtn = document.getElementById('speed-btn');
+      var speedLabel = document.getElementById('speed-label');
+      var angleBtn = document.getElementById('camera-angle-btn');
+      var angleLabel = document.getElementById('camera-angle-label');
+
+      var activeCoachClass = 'coach-toggle-btn inline-flex items-center justify-center gap-gutter-xs px-gutter-md py-gutter-sm rounded-full bg-light-secondary-container border border-light-primary text-light-on-secondary-container font-label text-label-md transition-colors duration-state-change';
+      var inactiveCoachClass = 'coach-toggle-btn inline-flex items-center justify-center gap-gutter-xs px-gutter-md py-gutter-sm rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-label text-label-md transition-colors duration-state-change hover:bg-light-secondary-container';
+
+      function formatSec(s) {
+        var m = Math.floor(s / 60);
+        var rem = s % 60;
+        return (m < 10 ? '0' : '') + m + ':' + (rem < 10 ? '0' : '') + rem;
+      }
+
+      function renderPlayer() {
+        var c = coaches[currentCoach];
+        var ex = exercises[currentEx];
+        coachImg.src = c.img;
+        coachImg.alt = c.alt + ' — ' + ex.title;
+        coachBadge.textContent = c.badge;
+        exTitle.textContent = ex.title;
+        exMeta.textContent = ex.meta;
+        exCue.innerHTML = '<strong>AI Voice Cue:</strong> ' + ex.cue;
+        if (elapsed > ex.duration) elapsed = 0;
+        timeLabel.textContent = formatSec(elapsed) + ' / ' + formatSec(ex.duration);
+        var curRep = Math.max(1, Math.min(ex.reps, Math.round((elapsed / ex.duration) * ex.reps)));
+        repLabel.textContent = 'Rep ' + curRep + ' / ' + ex.reps;
+        progressBar.style.width = Math.round((elapsed / ex.duration) * 100) + '%';
+      }
+
+      function setCoach(coach) {
+        currentCoach = coach;
+        var manBtn = document.getElementById('coach-man-btn');
+        var womanBtn = document.getElementById('coach-woman-btn');
+        manBtn.className = (coach === 'man') ? activeCoachClass : inactiveCoachClass;
+        womanBtn.className = (coach === 'woman') ? activeCoachClass : inactiveCoachClass;
+        manBtn.setAttribute('aria-pressed', coach === 'man' ? 'true' : 'false');
+        womanBtn.setAttribute('aria-pressed', coach === 'woman' ? 'true' : 'false');
+        renderPlayer();
+      }
+
+      document.getElementById('coach-man-btn').addEventListener('click', function () { setCoach('man'); });
+      document.getElementById('coach-woman-btn').addEventListener('click', function () { setCoach('woman'); });
+
+      playBtn.addEventListener('click', function () {
+        isPlaying = !isPlaying;
+        playIcon.textContent = isPlaying ? 'pause' : 'play_arrow';
+        if (isPlaying) {
+          timerId = setInterval(function () {
+            var dur = exercises[currentEx].duration;
+            elapsed = (elapsed + 1) % (dur + 1);
+            renderPlayer();
+          }, 1000);
+        } else if (timerId) {
+          clearInterval(timerId);
+          timerId = null;
+        }
+      });
+
+      speedBtn.addEventListener('click', function () {
+        speedIdx = (speedIdx + 1) % speeds.length;
+        speedLabel.textContent = speeds[speedIdx];
+      });
+
+      angleBtn.addEventListener('click', function () {
+        angleIdx = (angleIdx + 1) % angles.length;
+        angleLabel.textContent = angles[angleIdx];
+      });
+
+      document.querySelectorAll('.watch-demo-btn').forEach(function (btn) {
+        btn.addEventListener('click', function () {
+          currentEx = btn.getAttribute('data-ex');
+          elapsed = 0;
+          setCoach(btn.getAttribute('data-coach'));
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+
+      renderPlayer();
+    })();
+  </script>
+
+
+</body></html>

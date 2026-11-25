@@ -1,0 +1,528 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Body &amp; Color Match — HealthMate AI</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'light-primary': '#006445',
+        'light-on-primary': '#FFFFFF',
+        'light-primary-container': '#1A7F5A',
+        'light-on-primary-container': '#D3FFE6',
+        'light-secondary': '#446554',
+        'light-on-secondary': '#FFFFFF',
+        'light-secondary-container': '#C6EBD5',
+        'light-on-secondary-container': '#4A6B5A',
+        'light-tertiary': '#8F3E3E',
+        'light-on-tertiary': '#FFFFFF',
+        'light-tertiary-container': '#AD5655',
+        'light-on-tertiary-container': '#FFF2F1',
+        'light-error': '#BA1A1A',
+        'light-on-error': '#FFFFFF',
+        'light-error-container': '#FFDAD6',
+        'light-on-error-container': '#93000A',
+        'light-background': '#F6FBF5',
+        'light-on-background': '#181D1A',
+        'light-surface': '#F6FBF5',
+        'light-surface-dim': '#D7DBD6',
+        'light-surface-bright': '#F6FBF5',
+        'light-surface-container-lowest': '#FFFFFF',
+        'light-surface-container-low': '#F0F5EF',
+        'light-surface-container': '#EBEFEA',
+        'light-surface-container-high': '#E5E9E4',
+        'light-surface-container-highest': '#DFE4DE',
+        'light-on-surface': '#181D1A',
+        'light-surface-variant': '#DAE5DC',
+        'light-on-surface-variant': '#3E4943',
+        'light-outline': '#6E7A72',
+        'light-outline-variant': '#BEC9C1',
+        'light-inverse-surface': '#2D322E',
+        'light-inverse-on-surface': '#EEF2EC',
+        'light-inverse-primary': '#7DD8AD',
+        'light-shadow': '#000000',
+        'light-scrim': '#000000',
+        'dark-primary': '#7DD8AD',
+        'dark-on-primary': '#003825',
+        'dark-primary-container': '#1A7F5A',
+        'dark-on-primary-container': '#D3FFE6',
+        'dark-secondary': '#ABCFBA',
+        'dark-on-secondary': '#163628',
+        'dark-secondary-container': '#2F5040',
+        'dark-on-secondary-container': '#9DC1AC',
+        'dark-tertiary': '#FFB3B0',
+        'dark-on-tertiary': '#5C181A',
+        'dark-tertiary-container': '#AD5655',
+        'dark-on-tertiary-container': '#FFF2F1',
+        'dark-error': '#FFB4AB',
+        'dark-on-error': '#690005',
+        'dark-error-container': '#93000A',
+        'dark-on-error-container': '#FFDAD6',
+        'dark-background': '#101412',
+        'dark-on-background': '#DFE4DE',
+        'dark-surface': '#101412',
+        'dark-surface-dim': '#101412',
+        'dark-surface-bright': '#353A37',
+        'dark-surface-container-lowest': '#0A0F0C',
+        'dark-surface-container-low': '#181D1A',
+        'dark-surface-container': '#1C211E',
+        'dark-surface-container-high': '#262B28',
+        'dark-surface-container-highest': '#313632',
+        'dark-on-surface': '#DFE4DE',
+        'dark-surface-variant': '#3E4943',
+        'dark-on-surface-variant': '#BEC9C1',
+        'dark-outline': '#88938B',
+        'dark-outline-variant': '#3E4943',
+        'dark-inverse-surface': '#DFE4DE',
+        'dark-inverse-on-surface': '#2D322E',
+        'dark-inverse-primary': '#006C4A',
+        'dark-shadow': '#000000',
+        'dark-scrim': '#000000',
+      },
+      borderRadius: {
+        'sm': '4px',
+        'DEFAULT': '8px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '24px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '12px',
+        'gutter-lg': '16px',
+        'gutter-xl': '24px',
+        'section': '32px',
+        'page-margin': '16px',
+      },
+      fontFamily: {
+        'display': ['"Alata"', 'sans-serif'],
+        'headline': ['"Alata"', 'sans-serif'],
+        'title': ['"Instrument Sans"', 'sans-serif'],
+        'body': ['"Instrument Sans"', 'sans-serif'],
+        'label': ['"Instrument Sans"', 'sans-serif'],
+        'mono': ['"Source Code Pro"', 'monospace'],
+      },
+      fontSize: {
+        'display-lg': ['40px', { lineHeight: '48px', letterSpacing: '-0.5px', fontWeight: '400' }],
+        'display-lg-mobile': ['28px', { lineHeight: '34px', letterSpacing: '-0.25px', fontWeight: '400' }],
+        'headline-lg': ['34px', { lineHeight: '42px', letterSpacing: '-0.25px', fontWeight: '400' }],
+        'headline-lg-mobile': ['24px', { lineHeight: '30px', letterSpacing: '0px', fontWeight: '400' }],
+        'headline-md': ['20px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '400' }],
+        'title-lg': ['18px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '22px', letterSpacing: '0px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0.1px', fontWeight: '600' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.25px', fontWeight: '500' }],
+        'mono-md': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '500' }],
+      },
+      transitionDuration: {
+        'state-change': '120ms',
+        'surface-enter': '240ms',
+        'surface-exit': '160ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.3, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Alata&amp;family=Instrument+Sans:wght@400;500;600;700&amp;family=Source+Code+Pro:wght@500&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined, .material-symbols-rounded, .material-symbols-sharp, .material-icons {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      line-height: 1 !important;
+      box-sizing: content-box;
+      overflow: hidden;
+      white-space: nowrap;
+      direction: ltr;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body class="bg-light-surface text-light-on-surface font-body antialiased">
+  <div class="min-h-[884px] flex flex-col bg-light-surface max-w-md mx-auto relative" data-stitch-vh="min-h-[884px]===min-h-screen">
+
+    <!-- Contextual Header -->
+    <header class="sticky top-0 z-30 bg-light-surface-container-lowest border-b border-light-outline-variant px-page-margin py-gutter-md flex items-center justify-between gap-gutter-md">
+      <div class="flex items-center gap-gutter-sm">
+        <!-- COMPONENT: button-icon -->
+        <button data-component-id="button-icon" data-component-type="button" data-component-variant="icon" type="button" aria-label="Go back" class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-light-surface-container-low text-light-on-surface border border-light-outline-variant transition-colors duration-state-change ease-state-change hover:bg-light-secondary-container">
+          <span class="material-symbols-outlined text-title-md" aria-hidden="true">arrow_back</span>
+        </button>
+        <div class="flex flex-col">
+          <span class="font-headline text-title-md text-light-on-surface leading-tight" data-design-text-token="title-md">Body Color Match</span>
+          <span class="font-label text-label-sm text-light-on-surface-variant leading-tight" data-design-text-token="label-sm">AI undertone &amp; outfit scan</span>
+        </div>
+      </div>
+
+      <span class="inline-flex items-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-light-surface-container-low text-light-primary font-label text-label-sm">
+        <span class="material-symbols-outlined text-body-md" aria-hidden="true">lock</span>
+        <span data-design-text-token="label-sm">Private</span>
+      </span>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 px-page-margin pt-gutter-lg pb-section flex flex-col gap-gutter-xl">
+
+      <!-- Intro & Body Scan Card -->
+      <section aria-label="Body and skin tone scanner" class="flex flex-col gap-gutter-md">
+        <div class="flex flex-col gap-gutter-xs">
+          <h1 class="font-headline text-headline-lg-mobile text-light-on-surface text-balance" data-design-text-token="headline-lg-mobile">
+            Find your best color choices
+          </h1>
+          <p class="font-body text-body-md text-light-on-surface-variant text-pretty" data-design-text-token="body-md">
+            Scan your body or face in natural light to see which clothing and workout colors flatter your skin tone most.
+          </p>
+        </div>
+
+        <article class="rounded-xl overflow-hidden border border-light-outline-variant bg-light-surface-container-lowest flex flex-col">
+          <div class="relative aspect-[4/3] bg-light-surface-container-low overflow-hidden">
+            <img id="body-scan-img" src="https://lh3.googleusercontent.com/aida/ALJJyrBOHHFxZqCugidFD6MdIU0GojXr5fAY--fSGmFP4QRdcWtaG5NLBdgl6Bwu9bBbeLwBdMYm1soQXN7dR9rv-XYmUsmb7zSmgMDDvhu6yu1yvDoV9rPFThWRYsoYuBR3aqC-GqEWCWSrDhSM_k_7efPl2WkWDs1ako6VvpcRI-OVuWy9XZrhAjsjMG0USsbfKXQVDavBlbpSzy187t-Mejdd0bhKhahbwTHDkib_6uYv1uosLY0KnHXMEi5uyzbr2wk" alt="Natural daylight body and skin tone scan preview" class="w-full h-full object-cover">
+            <div class="absolute top-3 left-3">
+              <span class="inline-flex items-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-light-surface-container-lowest text-light-on-surface border border-light-outline-variant font-label text-label-sm">
+                <span class="material-symbols-outlined text-body-md text-light-primary" aria-hidden="true">palette</span>
+                <span id="scan-status-badge" data-design-text-token="label-sm">Warm Golden • Autumn</span>
+              </span>
+            </div>
+          </div>
+
+          <div class="p-gutter-md flex flex-col gap-gutter-sm">
+            <div class="grid grid-cols-2 gap-gutter-sm">
+              <label for="body-photo-input" class="cursor-pointer inline-flex items-center justify-center gap-gutter-xs px-gutter-md py-gutter-sm rounded-full bg-light-primary text-light-on-primary font-label text-label-md transition-colors duration-state-change hover:bg-light-primary-container">
+                <span class="material-symbols-outlined text-title-md" aria-hidden="true">photo_camera</span>
+                <span data-design-text-token="label-md">Scan body</span>
+                <input id="body-photo-input" type="file" accept="image/*" class="sr-only">
+              </label>
+
+              <button id="rescan-btn" type="button" class="inline-flex items-center justify-center gap-gutter-xs px-gutter-md py-gutter-sm rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-label text-label-md transition-colors duration-state-change hover:bg-light-secondary-container">
+                <span class="material-symbols-outlined text-title-md text-light-primary" aria-hidden="true">auto_awesome</span>
+                <span data-design-text-token="label-md">Demo scan</span>
+              </button>
+            </div>
+
+            <!-- Undertone Quick Switcher -->
+            <div class="flex items-center gap-gutter-sm overflow-x-auto pt-gutter-xs" aria-label="Test skin undertone">
+              <!-- COMPONENT: chip-filter-selected -->
+              <button data-component-id="chip-filter-selected" data-component-type="chip" data-component-variant="filter" aria-pressed="true" type="button" data-tone="warm" class="tone-chip shrink-0 px-gutter-md py-gutter-xs rounded-full bg-light-secondary-container border border-light-primary text-light-on-secondary-container font-label text-label-md transition-colors duration-state-change">
+                <span data-design-text-token="label-md">Warm Golden</span>
+              </button>
+
+              <!-- COMPONENT: chip-action -->
+              <button data-component-id="chip-action" data-component-type="chip" data-component-variant="action" aria-pressed="false" type="button" data-tone="cool" class="tone-chip shrink-0 px-gutter-md py-gutter-xs rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-label text-label-md transition-colors duration-state-change hover:bg-light-secondary-container">
+                <span data-design-text-token="label-md">Cool Rosy</span>
+              </button>
+
+              <!-- COMPONENT: chip-action -->
+              <button data-component-id="chip-action" data-component-type="chip" data-component-variant="action" aria-pressed="false" type="button" data-tone="neutral" class="tone-chip shrink-0 px-gutter-md py-gutter-xs rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-label text-label-md transition-colors duration-state-change hover:bg-light-secondary-container">
+                <span data-design-text-token="label-md">Neutral Olive</span>
+              </button>
+            </div>
+          </div>
+        </article>
+      </section>
+
+      <!-- Best Color Choices Palette -->
+      <section aria-label="Best colors for your body tone" class="flex flex-col gap-gutter-md">
+        <div class="flex items-baseline justify-between gap-gutter-sm">
+          <h2 class="font-headline text-headline-md text-light-on-surface" data-design-text-token="headline-md">Best colors for you</h2>
+          <span class="font-mono text-mono-md text-light-primary tabular-nums" data-design-text-token="mono-md">5 top picks</span>
+        </div>
+
+        <div id="best-swatches-grid" class="grid grid-cols-5 gap-gutter-sm"></div>
+
+        <article class="bg-light-surface-container-lowest border border-light-outline-variant rounded-lg p-gutter-md flex items-center gap-gutter-md">
+          <span id="selected-swatch-dot" class="w-10 h-10 rounded-full border border-light-outline-variant shrink-0" style="background-color: #2E6F56;" aria-hidden="true"></span>
+          <div class="flex flex-col flex-1 gap-gutter-xs">
+            <span id="selected-color-name" class="font-title text-title-md text-light-on-surface" data-design-text-token="title-md">Botanical Sage</span>
+            <p id="selected-color-reason" class="font-body text-body-sm text-light-on-surface-variant text-pretty" data-design-text-token="body-sm">
+              Brings out warm golden glow in daylight and looks fresh for both gym wear and casual shirts.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <!-- Best Dress & Clutch for Your Face -->
+      <section aria-label="Best dress and clutch for your face" class="flex flex-col gap-gutter-md">
+        <div class="flex items-baseline justify-between gap-gutter-sm">
+          <h2 class="font-headline text-headline-md text-light-on-surface" data-design-text-token="headline-md">Best dress &amp; clutch</h2>
+          <span class="font-label text-label-sm text-light-primary" data-design-text-token="label-sm">Face match</span>
+        </div>
+
+        <div class="flex items-center gap-gutter-sm overflow-x-auto pb-gutter-xs" aria-label="Select face shape">
+          <!-- COMPONENT: chip-filter-selected -->
+          <button data-component-id="chip-filter-selected" data-component-type="chip" data-component-variant="filter" aria-pressed="true" type="button" data-face="oval" class="face-chip shrink-0 px-gutter-md py-gutter-xs rounded-full bg-light-secondary-container border border-light-primary text-light-on-secondary-container font-label text-label-md transition-colors duration-state-change">
+            <span data-design-text-token="label-md">Oval Face</span>
+          </button>
+
+          <!-- COMPONENT: chip-action -->
+          <button data-component-id="chip-action" data-component-type="chip" data-component-variant="action" aria-pressed="false" type="button" data-face="round" class="face-chip shrink-0 px-gutter-md py-gutter-xs rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-label text-label-md transition-colors duration-state-change hover:bg-light-secondary-container">
+            <span data-design-text-token="label-md">Round Face</span>
+          </button>
+
+          <!-- COMPONENT: chip-action -->
+          <button data-component-id="chip-action" data-component-type="chip" data-component-variant="action" aria-pressed="false" type="button" data-face="square" class="face-chip shrink-0 px-gutter-md py-gutter-xs rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-label text-label-md transition-colors duration-state-change hover:bg-light-secondary-container">
+            <span data-design-text-token="label-md">Square Face</span>
+          </button>
+        </div>
+
+        <div class="flex flex-col gap-gutter-sm">
+          <article class="bg-light-surface-container-lowest border border-light-outline-variant rounded-lg p-gutter-md flex items-start gap-gutter-md">
+            <span class="inline-flex items-center justify-center w-9 h-9 rounded-md bg-light-secondary-container text-light-on-secondary-container shrink-0">
+              <span class="material-symbols-outlined text-title-lg" aria-hidden="true">checkroom</span>
+            </span>
+            <div class="flex flex-col flex-1 gap-gutter-xs">
+              <span id="dress-rec-title" class="font-title text-title-md text-light-on-surface" data-design-text-token="title-md">Wrap Dress &amp; Structured Collar</span>
+              <p id="dress-rec-body" class="font-body text-body-sm text-light-on-surface-variant text-pretty" data-design-text-token="body-sm">
+                Oval faces shine in Botanical Sage A-line wrap dresses or crisp mandarin-collar shirts that frame your balanced proportions.
+              </p>
+            </div>
+          </article>
+
+          <article class="bg-light-surface-container-lowest border border-light-outline-variant rounded-lg p-gutter-md flex items-start gap-gutter-md">
+            <span class="inline-flex items-center justify-center w-9 h-9 rounded-md bg-light-secondary-container text-light-on-secondary-container shrink-0">
+              <span class="material-symbols-outlined text-title-lg" aria-hidden="true">work_outline</span>
+            </span>
+            <div class="flex flex-col flex-1 gap-gutter-xs">
+              <span id="clutch-rec-title" class="font-title text-title-md text-light-on-surface" data-design-text-token="title-md">Warm Tan Envelope Clutch</span>
+              <p id="clutch-rec-body" class="font-body text-body-sm text-light-on-surface-variant text-pretty" data-design-text-token="body-sm">
+                Pair with a sleek tan or gold-clasp clutch (or cognac leather wallet &amp; belt) to create an effortless, attractive finish.
+              </p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- Colors to Soften & Outfit Guidance -->
+      <section aria-label="Colors to avoid and styling tips" class="flex flex-col gap-gutter-md">
+        <article class="bg-light-surface-container-low border border-light-outline-variant rounded-lg p-gutter-md flex flex-col gap-gutter-sm">
+          <h2 class="font-title text-title-md text-light-on-surface" data-design-text-token="title-md">Colors to use sparingly</h2>
+          <div id="avoid-colors-row" class="flex flex-wrap gap-gutter-sm"></div>
+          <p id="outfit-metal-tip" class="font-body text-body-sm text-light-on-surface-variant text-pretty" data-design-text-token="body-sm">
+            <strong>Best jewelry &amp; frames:</strong> Warm gold, bronze, and tortoiseshell frames pair naturally with your undertone.
+          </p>
+        </article>
+
+        <!-- COMPONENT: alert-info -->
+        <div role="alert" data-component-id="alert-info" data-component-type="alert" data-component-variant="info" class="flex items-start gap-gutter-md p-gutter-md rounded-lg bg-light-surface-container-low border border-light-outline-variant text-light-on-surface-variant">
+          <span class="material-symbols-outlined text-title-lg text-light-primary shrink-0 mt-0.5" aria-hidden="true">wb_sunny</span>
+          <span class="font-body text-body-sm flex-1" data-design-text-token="body-sm">
+            Tip: Scan near a window in natural daylight without heavy filters for the most accurate color match.
+          </span>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      var palettes = {
+        warm: {
+          badge: 'Warm Golden • Autumn',
+          swatches: [
+            { name: 'Botanical Sage', hex: '#2E6F56', reason: 'Brings out warm golden glow in daylight and looks fresh for both gym wear and casual shirts.' },
+            { name: 'Warm Terracotta', hex: '#B85D43', reason: 'Adds healthy warmth to your face without overpowering your natural skin tone.' },
+            { name: 'Cream Ivory', hex: '#F3EAD8', reason: 'Softens contrast better than stark white and brightens your eyes.' },
+            { name: 'Mustard Ochre', hex: '#C7922E', reason: 'Lifts golden undertones and works great for tops, kurtas, and jackets.' },
+            { name: 'Deep Navy', hex: '#1F354D', reason: 'A rich, grounded dark neutral that flatters warm skin more than flat black.' }
+          ],
+          avoid: ['Neon Yellow', 'Icy Pastel Grey', 'Harsh Stark White'],
+          tip: '<strong>Best jewelry &amp; frames:</strong> Warm gold, bronze, and tortoiseshell frames pair naturally with your undertone.',
+          clutchTitle: 'Warm Tan Envelope Clutch',
+          clutchBody: 'Pair with a sleek tan or gold-clasp clutch (or cognac leather wallet &amp; belt) to create an effortless, attractive finish.'
+        },
+        cool: {
+          badge: 'Cool Rosy • Summer/Winter',
+          swatches: [
+            { name: 'Cobalt Blue', hex: '#24528A', reason: 'Makes cool, rosy undertones look crisp, awake, and evenly balanced.' },
+            { name: 'Soft Berry', hex: '#8F3D5E', reason: 'Enhances natural lip and cheek color without washing out your complexion.' },
+            { name: 'Crisp Mint', hex: '#4B8E78', reason: 'Gives a clean, refreshing contrast for activewear and everyday shirts.' },
+            { name: 'Pure White', hex: '#F7F9FA', reason: 'Brightens cool undertones cleanly—ideal for collared shirts and tees.' },
+            { name: 'Charcoal Slate', hex: '#343B42', reason: 'Sharpens features effortlessly for formal or gym outfits.' }
+          ],
+          avoid: ['Orange Rust', 'Warm Mustard', 'Yellowish Beige'],
+          tip: '<strong>Best jewelry &amp; frames:</strong> Silver, platinum, white gold, and cool charcoal frames look sharpest on you.',
+          clutchTitle: 'Silver-Clasp Structured Clutch',
+          clutchBody: 'Pair with a charcoal, berry, or silver-hardware clutch (or sleek black leather accessories) for a sharp, modern look.'
+        },
+        neutral: {
+          badge: 'Neutral Olive • Balanced',
+          swatches: [
+            { name: 'Forest Emerald', hex: '#006445', reason: 'Highlights neutral olive skin with rich botanical depth.' },
+            { name: 'Dusty Rose', hex: '#B57278', reason: 'Balances olive tones gently without making skin look sallow.' },
+            { name: 'Warm Sand', hex: '#D6C4A8', reason: 'An effortless everyday neutral that blends smoothly with your tone.' },
+            { name: 'Plum Wine', hex: '#63324B', reason: 'Creates elegant evening contrast while keeping skin radiant.' },
+            { name: 'Teal Pine', hex: '#1F5F61', reason: 'Bridges warm and cool tones so your complexion looks clear and rested.' }
+          ],
+          avoid: ['Fluorescent Lime', 'Pale Pastel Lilac', 'Muddy Brown'],
+          tip: '<strong>Best jewelry &amp; frames:</strong> Both brushed gold and silver work well—rose gold is especially flattering.',
+          clutchTitle: 'Rose-Gold &amp; Sand Clutch',
+          clutchBody: 'Pair with a warm sand or rose-gold trimmed clutch (or matte olive crossbody) to complement your balanced tone.'
+        }
+      };
+
+      var faceFits = {
+        oval: {
+          title: 'Wrap Dress & Structured Collar',
+          desc: 'Oval faces shine in {COLOR} A-line wrap dresses, tailored kurtas, or crisp mandarin-collar shirts that highlight balanced proportions.'
+        },
+        round: {
+          title: 'V-Neck Midi & Open-Collar Shirt',
+          desc: 'Round faces look sharpest in {COLOR} V-neck midi dresses or vertical-stripe open-collar shirts that naturally elongate the neckline.'
+        },
+        square: {
+          title: 'Scoop-Neck Flowy Dress & Soft Knit',
+          desc: 'Square jawlines look great in {COLOR} scoop-neck dresses, draped tops, or soft crew-neck tees that add gentle movement.'
+        }
+      };
+
+      var currentTone = 'warm';
+      var currentFace = 'oval';
+      var selectedIdx = 0;
+
+      var badgeEl = document.getElementById('scan-status-badge');
+      var gridEl = document.getElementById('best-swatches-grid');
+      var dotEl = document.getElementById('selected-swatch-dot');
+      var nameEl = document.getElementById('selected-color-name');
+      var reasonEl = document.getElementById('selected-color-reason');
+      var dressTitleEl = document.getElementById('dress-rec-title');
+      var dressBodyEl = document.getElementById('dress-rec-body');
+      var clutchTitleEl = document.getElementById('clutch-rec-title');
+      var clutchBodyEl = document.getElementById('clutch-rec-body');
+      var avoidEl = document.getElementById('avoid-colors-row');
+      var tipEl = document.getElementById('outfit-metal-tip');
+
+      var activeChipClass = 'tone-chip shrink-0 px-gutter-md py-gutter-xs rounded-full bg-light-secondary-container border border-light-primary text-light-on-secondary-container font-label text-label-md transition-colors duration-state-change';
+      var inactiveChipClass = 'tone-chip shrink-0 px-gutter-md py-gutter-xs rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-label text-label-md transition-colors duration-state-change hover:bg-light-secondary-container';
+
+      var activeFaceClass = 'face-chip shrink-0 px-gutter-md py-gutter-xs rounded-full bg-light-secondary-container border border-light-primary text-light-on-secondary-container font-label text-label-md transition-colors duration-state-change';
+      var inactiveFaceClass = 'face-chip shrink-0 px-gutter-md py-gutter-xs rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-label text-label-md transition-colors duration-state-change hover:bg-light-secondary-container';
+
+      function renderTone() {
+        var data = palettes[currentTone];
+        badgeEl.textContent = data.badge;
+        gridEl.innerHTML = '';
+
+        data.swatches.forEach(function (sw, idx) {
+          var btn = document.createElement('button');
+          btn.type = 'button';
+          btn.setAttribute('aria-label', 'Select ' + sw.name);
+          btn.className = (idx === selectedIdx)
+            ? 'flex flex-col items-center gap-gutter-xs p-gutter-xs rounded-lg bg-light-secondary-container border border-light-primary'
+            : 'flex flex-col items-center gap-gutter-xs p-gutter-xs rounded-lg bg-light-surface-container-lowest border border-light-outline-variant';
+
+          var circle = document.createElement('span');
+          circle.className = 'w-9 h-9 rounded-full border border-light-outline-variant';
+          circle.style.backgroundColor = sw.hex;
+          circle.setAttribute('aria-hidden', 'true');
+
+          var lbl = document.createElement('span');
+          lbl.className = 'w-full truncate font-label text-label-sm text-light-on-surface text-center leading-tight';
+          lbl.textContent = sw.name.split(' ')[1] || sw.name;
+
+          btn.appendChild(circle);
+          btn.appendChild(lbl);
+          btn.addEventListener('click', function () {
+            selectedIdx = idx;
+            renderTone();
+          });
+          gridEl.appendChild(btn);
+        });
+
+        var activeSw = data.swatches[selectedIdx] || data.swatches[0];
+        dotEl.style.backgroundColor = activeSw.hex;
+        nameEl.textContent = activeSw.name;
+        reasonEl.textContent = activeSw.reason;
+
+        var face = faceFits[currentFace];
+        dressTitleEl.textContent = face.title;
+        dressBodyEl.textContent = face.desc.replace('{COLOR}', activeSw.name);
+        clutchTitleEl.innerHTML = data.clutchTitle;
+        clutchBodyEl.innerHTML = data.clutchBody;
+
+        avoidEl.innerHTML = '';
+        data.avoid.forEach(function (item) {
+          var pill = document.createElement('span');
+          pill.className = 'px-gutter-sm py-gutter-xs rounded-full bg-light-surface-container-lowest border border-light-outline-variant font-label text-label-sm text-light-on-surface-variant';
+          pill.textContent = item;
+          avoidEl.appendChild(pill);
+        });
+
+        tipEl.innerHTML = data.tip;
+      }
+
+      var chips = document.querySelectorAll('.tone-chip');
+      function setTone(tone) {
+        currentTone = tone;
+        selectedIdx = 0;
+        chips.forEach(function (c) {
+          var active = c.getAttribute('data-tone') === tone;
+          c.className = active ? activeChipClass : inactiveChipClass;
+          c.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+        renderTone();
+      }
+
+      chips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          setTone(chip.getAttribute('data-tone'));
+        });
+      });
+
+      var faceChips = document.querySelectorAll('.face-chip');
+      faceChips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          currentFace = chip.getAttribute('data-face');
+          faceChips.forEach(function (c) {
+            var active = c.getAttribute('data-face') === currentFace;
+            c.className = active ? activeFaceClass : inactiveFaceClass;
+            c.setAttribute('aria-pressed', active ? 'true' : 'false');
+          });
+          renderTone();
+        });
+      });
+
+      document.getElementById('rescan-btn').addEventListener('click', function () {
+        var order = ['warm', 'cool', 'neutral'];
+        var next = order[(order.indexOf(currentTone) + 1) % order.length];
+        setTone(next);
+      });
+
+      document.getElementById('body-photo-input').addEventListener('change', function (e) {
+        if (e.target.files && e.target.files.length > 0) {
+          var reader = new FileReader();
+          reader.onload = function (ev) {
+            document.getElementById('body-scan-img').src = ev.target.result;
+          };
+          reader.readAsDataURL(e.target.files[0]);
+          setTone('neutral');
+        }
+      });
+
+      renderTone();
+    })();
+  </script>
+
+
+</body></html>

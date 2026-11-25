@@ -1,0 +1,365 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nutrition &amp; Diet Plans — HealthMate AI</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'light-primary': '#006445',
+        'light-on-primary': '#FFFFFF',
+        'light-primary-container': '#1A7F5A',
+        'light-on-primary-container': '#D3FFE6',
+        'light-secondary': '#446554',
+        'light-on-secondary': '#FFFFFF',
+        'light-secondary-container': '#C6EBD5',
+        'light-on-secondary-container': '#4A6B5A',
+        'light-tertiary': '#8F3E3E',
+        'light-on-tertiary': '#FFFFFF',
+        'light-tertiary-container': '#AD5655',
+        'light-on-tertiary-container': '#FFF2F1',
+        'light-error': '#BA1A1A',
+        'light-on-error': '#FFFFFF',
+        'light-error-container': '#FFDAD6',
+        'light-on-error-container': '#93000A',
+        'light-background': '#F6FBF5',
+        'light-on-background': '#181D1A',
+        'light-surface': '#F6FBF5',
+        'light-surface-dim': '#D7DBD6',
+        'light-surface-bright': '#F6FBF5',
+        'light-surface-container-lowest': '#FFFFFF',
+        'light-surface-container-low': '#F0F5EF',
+        'light-surface-container': '#EBEFEA',
+        'light-surface-container-high': '#E5E9E4',
+        'light-surface-container-highest': '#DFE4DE',
+        'light-on-surface': '#181D1A',
+        'light-surface-variant': '#DAE5DC',
+        'light-on-surface-variant': '#3E4943',
+        'light-outline': '#6E7A72',
+        'light-outline-variant': '#BEC9C1',
+        'light-inverse-surface': '#2D322E',
+        'light-inverse-on-surface': '#EEF2EC',
+        'light-inverse-primary': '#7DD8AD',
+        'light-shadow': '#000000',
+        'light-scrim': '#000000',
+        'dark-primary': '#7DD8AD',
+        'dark-on-primary': '#003825',
+        'dark-primary-container': '#1A7F5A',
+        'dark-on-primary-container': '#D3FFE6',
+        'dark-secondary': '#ABCFBA',
+        'dark-on-secondary': '#163628',
+        'dark-secondary-container': '#2F5040',
+        'dark-on-secondary-container': '#9DC1AC',
+        'dark-tertiary': '#FFB3B0',
+        'dark-on-tertiary': '#5C181A',
+        'dark-tertiary-container': '#AD5655',
+        'dark-on-tertiary-container': '#FFF2F1',
+        'dark-error': '#FFB4AB',
+        'dark-on-error': '#690005',
+        'dark-error-container': '#93000A',
+        'dark-on-error-container': '#FFDAD6',
+        'dark-background': '#101412',
+        'dark-on-background': '#DFE4DE',
+        'dark-surface': '#101412',
+        'dark-surface-dim': '#101412',
+        'dark-surface-bright': '#353A37',
+        'dark-surface-container-lowest': '#0A0F0C',
+        'dark-surface-container-low': '#181D1A',
+        'dark-surface-container': '#1C211E',
+        'dark-surface-container-high': '#262B28',
+        'dark-surface-container-highest': '#313632',
+        'dark-on-surface': '#DFE4DE',
+        'dark-surface-variant': '#3E4943',
+        'dark-on-surface-variant': '#BEC9C1',
+        'dark-outline': '#88938B',
+        'dark-outline-variant': '#3E4943',
+        'dark-inverse-surface': '#DFE4DE',
+        'dark-inverse-on-surface': '#2D322E',
+        'dark-inverse-primary': '#006C4A',
+        'dark-shadow': '#000000',
+        'dark-scrim': '#000000',
+      },
+      borderRadius: {
+        'sm': '4px',
+        'DEFAULT': '8px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '24px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '12px',
+        'gutter-lg': '16px',
+        'gutter-xl': '24px',
+        'section': '32px',
+        'page-margin': '16px',
+      },
+      fontFamily: {
+        'display': ['"Alata"', 'sans-serif'],
+        'headline': ['"Alata"', 'sans-serif'],
+        'title': ['"Instrument Sans"', 'sans-serif'],
+        'body': ['"Instrument Sans"', 'sans-serif'],
+        'label': ['"Instrument Sans"', 'sans-serif'],
+        'mono': ['"Source Code Pro"', 'monospace'],
+      },
+      fontSize: {
+        'display-lg': ['40px', { lineHeight: '48px', letterSpacing: '-0.5px', fontWeight: '400' }],
+        'display-lg-mobile': ['28px', { lineHeight: '34px', letterSpacing: '-0.25px', fontWeight: '400' }],
+        'headline-lg': ['34px', { lineHeight: '42px', letterSpacing: '-0.25px', fontWeight: '400' }],
+        'headline-lg-mobile': ['24px', { lineHeight: '30px', letterSpacing: '0px', fontWeight: '400' }],
+        'headline-md': ['20px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '400' }],
+        'title-lg': ['18px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '22px', letterSpacing: '0px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0.1px', fontWeight: '600' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.25px', fontWeight: '500' }],
+        'mono-md': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '500' }],
+      },
+      transitionDuration: {
+        'state-change': '120ms',
+        'surface-enter': '240ms',
+        'surface-exit': '160ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.3, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Alata&amp;family=Instrument+Sans:wght@400;500;600;700&amp;family=Source+Code+Pro:wght@500&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined, .material-symbols-rounded, .material-symbols-sharp, .material-icons {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      line-height: 1 !important;
+      box-sizing: content-box;
+      overflow: hidden;
+      white-space: nowrap;
+      direction: ltr;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body class="bg-light-surface text-light-on-surface font-body antialiased">
+  <div class="min-h-[884px] flex flex-col bg-light-surface max-w-md mx-auto relative" data-stitch-vh="min-h-[884px]===min-h-screen">
+
+    <!-- Contextual Header -->
+    <header class="sticky top-0 z-30 bg-light-surface-container-lowest border-b border-light-outline-variant px-page-margin py-gutter-md flex items-center justify-between gap-gutter-md">
+      <div class="flex items-center gap-gutter-sm">
+        <!-- COMPONENT: button-icon -->
+        <button data-component-id="button-icon" data-component-type="button" data-component-variant="icon" type="button" aria-label="Go back" class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-light-surface-container-low text-light-on-surface border border-light-outline-variant transition-colors duration-state-change ease-state-change hover:bg-light-secondary-container">
+          <span class="material-symbols-outlined text-title-md" aria-hidden="true">arrow_back</span>
+        </button>
+        <div class="flex flex-col">
+          <span class="font-headline text-title-md text-light-on-surface leading-tight" data-design-text-token="title-md">Nutrition &amp; Diet</span>
+          <span class="font-label text-label-sm text-light-on-surface-variant leading-tight" data-design-text-token="label-sm">Food &amp; nutrient guide</span>
+        </div>
+      </div>
+
+      <span class="inline-flex items-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-light-surface-container-low text-light-primary font-label text-label-sm">
+        <span class="material-symbols-outlined text-body-md" aria-hidden="true">lock</span>
+        <span data-design-text-token="label-sm">Private</span>
+      </span>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 px-page-margin pt-gutter-lg pb-section flex flex-col gap-gutter-xl">
+
+      <!-- Intro & Goal Selector -->
+      <section aria-label="Choose nutrition goal" class="flex flex-col gap-gutter-md">
+        <div class="flex flex-col gap-gutter-xs">
+          <h1 class="font-headline text-headline-lg-mobile text-light-on-surface text-balance" data-design-text-token="headline-lg-mobile">
+            Daily meals &amp; nutrients
+          </h1>
+          <p class="font-body text-body-md text-light-on-surface-variant text-pretty" data-design-text-token="body-md">
+            Pick a focus to see simple foods, key nutrients, and hydration tips.
+          </p>
+        </div>
+
+        <div class="flex items-center gap-gutter-sm overflow-x-auto pb-gutter-xs">
+          <!-- COMPONENT: chip-filter-selected -->
+          <button data-component-id="chip-filter-selected" data-component-type="chip" data-component-variant="filter" aria-pressed="true" type="button" data-goal="skin" class="goal-chip shrink-0 inline-flex items-center gap-gutter-xs px-gutter-md py-gutter-xs rounded-full bg-light-secondary-container border border-light-primary text-light-on-secondary-container font-label text-label-md transition-colors duration-state-change">
+            <span data-design-text-token="label-md">Clear Skin</span>
+          </button>
+
+          <!-- COMPONENT: chip-action -->
+          <button data-component-id="chip-action" data-component-type="chip" data-component-variant="action" type="button" data-goal="hair" class="goal-chip shrink-0 inline-flex items-center gap-gutter-xs px-gutter-md py-gutter-xs rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-label text-label-md transition-colors duration-state-change hover:bg-light-secondary-container">
+            <span data-design-text-token="label-md">Hair Strength</span>
+          </button>
+
+          <!-- COMPONENT: chip-action -->
+          <button data-component-id="chip-action" data-component-type="chip" data-component-variant="action" type="button" data-goal="energy" class="goal-chip shrink-0 inline-flex items-center gap-gutter-xs px-gutter-md py-gutter-xs rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-label text-label-md transition-colors duration-state-change hover:bg-light-secondary-container">
+            <span data-design-text-token="label-md">Energy &amp; Immunity</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Today's Balanced Meal Plan -->
+      <section aria-label="Daily meal plan" class="flex flex-col gap-gutter-md">
+        <div class="flex items-baseline justify-between gap-gutter-sm">
+          <h2 id="meal-plan-heading" class="font-headline text-headline-md text-light-on-surface" data-design-text-token="headline-md">Clear skin meal plan</h2>
+          <span class="font-label text-label-sm text-light-primary" data-design-text-token="label-sm">8 glasses water</span>
+        </div>
+
+        <!-- COMPONENT: card-elevated -->
+        <article data-component-id="card-elevated" data-component-type="card" data-component-variant="elevated" class="bg-light-surface-container-lowest border border-light-outline-variant rounded-lg p-gutter-lg flex flex-col gap-gutter-md">
+          <ul id="meal-list" class="flex flex-col gap-gutter-md">
+            <li class="flex items-start gap-gutter-md">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-md bg-light-secondary-container text-light-on-secondary-container shrink-0">
+                <span class="material-symbols-outlined text-body-lg" aria-hidden="true">wb_twilight</span>
+              </span>
+              <div class="flex flex-col flex-1">
+                <span class="font-title text-title-md text-light-on-surface" data-design-text-token="title-md">Breakfast</span>
+                <span class="font-body text-body-sm text-light-on-surface-variant" data-design-text-token="body-sm">Oats with chia seeds, berries, and a handful of walnuts.</span>
+              </div>
+            </li>
+
+            <li class="flex items-start gap-gutter-md">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-md bg-light-secondary-container text-light-on-secondary-container shrink-0">
+                <span class="material-symbols-outlined text-body-lg" aria-hidden="true">wb_sunny</span>
+              </span>
+              <div class="flex flex-col flex-1">
+                <span class="font-title text-title-md text-light-on-surface" data-design-text-token="title-md">Lunch</span>
+                <span class="font-body text-body-sm text-light-on-surface-variant" data-design-text-token="body-sm">Grilled chickpeas or fish with spinach, cucumber, and brown rice.</span>
+              </div>
+            </li>
+
+            <li class="flex items-start gap-gutter-md">
+              <span class="inline-flex items-center justify-center w-8 h-8 rounded-md bg-light-secondary-container text-light-on-secondary-container shrink-0">
+                <span class="material-symbols-outlined text-body-lg" aria-hidden="true">nights_stay</span>
+              </span>
+              <div class="flex flex-col flex-1">
+                <span class="font-title text-title-md text-light-on-surface" data-design-text-token="title-md">Dinner</span>
+                <span class="font-body text-body-sm text-light-on-surface-variant" data-design-text-token="body-sm">Lentil soup with roasted bell peppers, carrots, and olive oil.</span>
+              </div>
+            </li>
+          </ul>
+        </article>
+      </section>
+
+      <!-- Food & Nutrient Information -->
+      <section aria-label="Food and nutrient information" class="flex flex-col gap-gutter-md">
+        <div class="flex items-baseline justify-between gap-gutter-sm">
+          <h2 class="font-headline text-headline-md text-light-on-surface" data-design-text-token="headline-md">Food &amp; nutrient guide</h2>
+          <span class="font-label text-label-sm text-light-on-surface-variant" data-design-text-token="label-sm">4 essentials</span>
+        </div>
+
+        <div class="grid grid-cols-2 gap-gutter-md items-stretch">
+          <article class="h-full bg-light-surface-container-lowest border border-light-outline-variant rounded-lg p-gutter-md flex flex-col gap-gutter-xs">
+            <span class="font-label text-label-sm text-light-primary" data-design-text-token="label-sm">Omega-3</span>
+            <h3 class="font-title text-title-md text-light-on-surface" data-design-text-token="title-md">Walnuts &amp; Flax</h3>
+            <p class="font-body text-body-sm text-light-on-surface-variant" data-design-text-token="body-sm">Calms skin dryness and supports a healthy scalp.</p>
+          </article>
+
+          <article class="h-full bg-light-surface-container-lowest border border-light-outline-variant rounded-lg p-gutter-md flex flex-col gap-gutter-xs">
+            <span class="font-label text-label-sm text-light-primary" data-design-text-token="label-sm">Vitamin C</span>
+            <h3 class="font-title text-title-md text-light-on-surface" data-design-text-token="title-md">Bell Peppers</h3>
+            <p class="font-body text-body-sm text-light-on-surface-variant" data-design-text-token="body-sm">Helps collagen building and iron absorption.</p>
+          </article>
+
+          <article class="h-full bg-light-surface-container-lowest border border-light-outline-variant rounded-lg p-gutter-md flex flex-col gap-gutter-xs">
+            <span class="font-label text-label-sm text-light-primary" data-design-text-token="label-sm">Iron &amp; Folate</span>
+            <h3 class="font-title text-title-md text-light-on-surface" data-design-text-token="title-md">Spinach &amp; Lentils</h3>
+            <p class="font-body text-body-sm text-light-on-surface-variant" data-design-text-token="body-sm">Nourishes hair roots and fights fatigue.</p>
+          </article>
+
+          <article class="h-full bg-light-surface-container-lowest border border-light-outline-variant rounded-lg p-gutter-md flex flex-col gap-gutter-xs">
+            <span class="font-label text-label-sm text-light-primary" data-design-text-token="label-sm">Zinc &amp; Biotin</span>
+            <h3 class="font-title text-title-md text-light-on-surface" data-design-text-token="title-md">Pumpkin Seeds</h3>
+            <p class="font-body text-body-sm text-light-on-surface-variant" data-design-text-token="body-sm">Supports hair strength and skin healing.</p>
+          </article>
+        </div>
+      </section>
+
+      <!-- Educational Disclaimer -->
+      <!-- COMPONENT: alert-info -->
+      <div role="alert" data-component-id="alert-info" data-component-type="alert" data-component-variant="info" class="flex items-start gap-gutter-md p-gutter-md rounded-lg bg-light-surface-container-low border border-light-outline-variant text-light-on-surface-variant">
+        <span class="material-symbols-outlined text-title-lg text-light-primary shrink-0 mt-0.5" aria-hidden="true">verified_user</span>
+        <span class="font-body text-body-sm flex-1" data-design-text-token="body-sm">
+          General nutrition guidance only—check with a doctor or dietitian for allergies, diabetes, or pregnancy.
+        </span>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      var heading = document.getElementById('meal-plan-heading');
+      var mealList = document.getElementById('meal-list');
+      var chips = document.querySelectorAll('.goal-chip');
+
+      var plans = {
+        skin: {
+          title: 'Clear skin meal plan',
+          items: [
+            ['Breakfast', 'Oats with chia seeds, berries, and a handful of walnuts.'],
+            ['Lunch', 'Grilled chickpeas or fish with spinach, cucumber, and brown rice.'],
+            ['Dinner', 'Lentil soup with roasted bell peppers, carrots, and olive oil.']
+          ]
+        },
+        hair: {
+          title: 'Hair strength meal plan',
+          items: [
+            ['Breakfast', 'Scrambled eggs or tofu scramble with spinach and whole-grain toast.'],
+            ['Lunch', 'Black bean and quinoa bowl with pumpkin seeds and avocado.'],
+            ['Dinner', 'Salmon or lentil curry with steamed broccoli and sweet potato.']
+          ]
+        },
+        energy: {
+          title: 'Energy & immunity plan',
+          items: [
+            ['Breakfast', 'Greek yogurt with sliced banana, almonds, and flaxseed.'],
+            ['Lunch', 'Whole-wheat wrap with hummus, roasted veggies, and leafy greens.'],
+            ['Dinner', 'Warm ginger vegetable soup with brown rice and tofu or chicken.']
+          ]
+        }
+      };
+
+      var activeClass = 'goal-chip shrink-0 inline-flex items-center gap-gutter-xs px-gutter-md py-gutter-xs rounded-full bg-light-secondary-container border border-light-primary text-light-on-secondary-container font-label text-label-md transition-colors duration-state-change';
+      var inactiveClass = 'goal-chip shrink-0 inline-flex items-center gap-gutter-xs px-gutter-md py-gutter-xs rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-label text-label-md transition-colors duration-state-change hover:bg-light-secondary-container';
+
+      chips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          var key = chip.getAttribute('data-goal');
+          var plan = plans[key];
+          if (!plan) return;
+          chips.forEach(function (c) {
+            c.className = (c === chip) ? activeClass : inactiveClass;
+          });
+          heading.textContent = plan.title;
+          var lis = mealList.querySelectorAll('li');
+          plan.items.forEach(function (pair, idx) {
+            if (lis[idx]) {
+              var spans = lis[idx].querySelectorAll('span');
+              spans[2].textContent = pair[0];
+              spans[3].textContent = pair[1];
+            }
+          });
+        });
+      });
+    })();
+  </script>
+
+
+</body></html>

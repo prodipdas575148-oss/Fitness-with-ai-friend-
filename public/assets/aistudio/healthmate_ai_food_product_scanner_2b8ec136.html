@@ -1,0 +1,462 @@
+<!DOCTYPE html><html lang="en"><head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Food &amp; Product Scanner — HealthMate AI</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script id="tailwind-config">/** @type {import('tailwindcss').Config} */
+globalThis.tailwind = globalThis.tailwind || {};
+globalThis.tailwind.config = {
+  darkMode: 'class',
+  theme: {
+    extend: {
+      colors: {
+        'light-primary': '#006445',
+        'light-on-primary': '#FFFFFF',
+        'light-primary-container': '#1A7F5A',
+        'light-on-primary-container': '#D3FFE6',
+        'light-secondary': '#446554',
+        'light-on-secondary': '#FFFFFF',
+        'light-secondary-container': '#C6EBD5',
+        'light-on-secondary-container': '#4A6B5A',
+        'light-tertiary': '#8F3E3E',
+        'light-on-tertiary': '#FFFFFF',
+        'light-tertiary-container': '#AD5655',
+        'light-on-tertiary-container': '#FFF2F1',
+        'light-error': '#BA1A1A',
+        'light-on-error': '#FFFFFF',
+        'light-error-container': '#FFDAD6',
+        'light-on-error-container': '#93000A',
+        'light-background': '#F6FBF5',
+        'light-on-background': '#181D1A',
+        'light-surface': '#F6FBF5',
+        'light-surface-dim': '#D7DBD6',
+        'light-surface-bright': '#F6FBF5',
+        'light-surface-container-lowest': '#FFFFFF',
+        'light-surface-container-low': '#F0F5EF',
+        'light-surface-container': '#EBEFEA',
+        'light-surface-container-high': '#E5E9E4',
+        'light-surface-container-highest': '#DFE4DE',
+        'light-on-surface': '#181D1A',
+        'light-surface-variant': '#DAE5DC',
+        'light-on-surface-variant': '#3E4943',
+        'light-outline': '#6E7A72',
+        'light-outline-variant': '#BEC9C1',
+        'light-inverse-surface': '#2D322E',
+        'light-inverse-on-surface': '#EEF2EC',
+        'light-inverse-primary': '#7DD8AD',
+        'light-shadow': '#000000',
+        'light-scrim': '#000000',
+        'dark-primary': '#7DD8AD',
+        'dark-on-primary': '#003825',
+        'dark-primary-container': '#1A7F5A',
+        'dark-on-primary-container': '#D3FFE6',
+        'dark-secondary': '#ABCFBA',
+        'dark-on-secondary': '#163628',
+        'dark-secondary-container': '#2F5040',
+        'dark-on-secondary-container': '#9DC1AC',
+        'dark-tertiary': '#FFB3B0',
+        'dark-on-tertiary': '#5C181A',
+        'dark-tertiary-container': '#AD5655',
+        'dark-on-tertiary-container': '#FFF2F1',
+        'dark-error': '#FFB4AB',
+        'dark-on-error': '#690005',
+        'dark-error-container': '#93000A',
+        'dark-on-error-container': '#FFDAD6',
+        'dark-background': '#101412',
+        'dark-on-background': '#DFE4DE',
+        'dark-surface': '#101412',
+        'dark-surface-dim': '#101412',
+        'dark-surface-bright': '#353A37',
+        'dark-surface-container-lowest': '#0A0F0C',
+        'dark-surface-container-low': '#181D1A',
+        'dark-surface-container': '#1C211E',
+        'dark-surface-container-high': '#262B28',
+        'dark-surface-container-highest': '#313632',
+        'dark-on-surface': '#DFE4DE',
+        'dark-surface-variant': '#3E4943',
+        'dark-on-surface-variant': '#BEC9C1',
+        'dark-outline': '#88938B',
+        'dark-outline-variant': '#3E4943',
+        'dark-inverse-surface': '#DFE4DE',
+        'dark-inverse-on-surface': '#2D322E',
+        'dark-inverse-primary': '#006C4A',
+        'dark-shadow': '#000000',
+        'dark-scrim': '#000000',
+      },
+      borderRadius: {
+        'sm': '4px',
+        'DEFAULT': '8px',
+        'md': '12px',
+        'lg': '16px',
+        'xl': '24px',
+        'full': '9999px',
+      },
+      spacing: {
+        'gutter-xs': '4px',
+        'gutter-sm': '8px',
+        'gutter-md': '12px',
+        'gutter-lg': '16px',
+        'gutter-xl': '24px',
+        'section': '32px',
+        'page-margin': '16px',
+      },
+      fontFamily: {
+        'display': ['"Alata"', 'sans-serif'],
+        'headline': ['"Alata"', 'sans-serif'],
+        'title': ['"Instrument Sans"', 'sans-serif'],
+        'body': ['"Instrument Sans"', 'sans-serif'],
+        'label': ['"Instrument Sans"', 'sans-serif'],
+        'mono': ['"Source Code Pro"', 'monospace'],
+      },
+      fontSize: {
+        'display-lg': ['40px', { lineHeight: '48px', letterSpacing: '-0.5px', fontWeight: '400' }],
+        'display-lg-mobile': ['28px', { lineHeight: '34px', letterSpacing: '-0.25px', fontWeight: '400' }],
+        'headline-lg': ['34px', { lineHeight: '42px', letterSpacing: '-0.25px', fontWeight: '400' }],
+        'headline-lg-mobile': ['24px', { lineHeight: '30px', letterSpacing: '0px', fontWeight: '400' }],
+        'headline-md': ['20px', { lineHeight: '26px', letterSpacing: '0px', fontWeight: '400' }],
+        'title-lg': ['18px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '600' }],
+        'title-md': ['16px', { lineHeight: '22px', letterSpacing: '0px', fontWeight: '600' }],
+        'body-lg': ['16px', { lineHeight: '24px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-md': ['14px', { lineHeight: '20px', letterSpacing: '0px', fontWeight: '400' }],
+        'body-sm': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '400' }],
+        'label-lg': ['14px', { lineHeight: '20px', letterSpacing: '0.1px', fontWeight: '600' }],
+        'label-md': ['12px', { lineHeight: '16px', letterSpacing: '0.2px', fontWeight: '600' }],
+        'label-sm': ['11px', { lineHeight: '14px', letterSpacing: '0.25px', fontWeight: '500' }],
+        'mono-md': ['13px', { lineHeight: '18px', letterSpacing: '0px', fontWeight: '500' }],
+      },
+      transitionDuration: {
+        'state-change': '120ms',
+        'surface-enter': '240ms',
+        'surface-exit': '160ms',
+      },
+      transitionDelay: {
+        'state-change': '0ms',
+        'surface-enter': '0ms',
+        'surface-exit': '0ms',
+      },
+      transitionTimingFunction: {
+        'state-change': 'ease-out',
+        'surface-enter': 'cubic-bezier(0.2, 0, 0, 1)',
+        'surface-exit': 'cubic-bezier(0.3, 0, 1, 1)',
+      },
+    },
+  },
+};
+if (typeof module !== 'undefined') module.exports = globalThis.tailwind.config;
+</script>
+  <link href="https://fonts.googleapis.com/css2?family=Alata&amp;family=Instrument+Sans:wght@400;500;600;700&amp;family=Source+Code+Pro:wght@500&amp;display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=block" rel="stylesheet">
+  <style>
+    .material-symbols-outlined, .material-symbols-rounded, .material-symbols-sharp, .material-icons {
+      display: inline-block;
+      width: 1em;
+      height: 1em;
+      line-height: 1 !important;
+      box-sizing: content-box;
+      overflow: hidden;
+      white-space: nowrap;
+      direction: ltr;
+      vertical-align: middle;
+    }
+  </style>
+</head>
+<body class="bg-light-surface text-light-on-surface font-body antialiased">
+  <div class="min-h-[884px] flex flex-col bg-light-surface max-w-md mx-auto relative" data-stitch-vh="min-h-[884px]===min-h-screen">
+
+    <!-- Contextual Header -->
+    <header class="sticky top-0 z-30 bg-light-surface-container-lowest border-b border-light-outline-variant px-page-margin py-gutter-md flex items-center justify-between gap-gutter-md">
+      <div class="flex items-center gap-gutter-sm">
+        <!-- COMPONENT: button-icon -->
+        <button data-component-id="button-icon" data-component-type="button" data-component-variant="icon" type="button" aria-label="Go back" class="inline-flex items-center justify-center w-9 h-9 rounded-full bg-light-surface-container-low text-light-on-surface border border-light-outline-variant transition-colors duration-state-change ease-state-change hover:bg-light-secondary-container">
+          <span class="material-symbols-outlined text-title-md" aria-hidden="true">arrow_back</span>
+        </button>
+        <div class="flex flex-col">
+          <span class="font-headline text-title-md text-light-on-surface leading-tight" data-design-text-token="title-md">Food &amp; Product Scan</span>
+          <span class="font-label text-label-sm text-light-on-surface-variant leading-tight" data-design-text-token="label-sm">Calories &amp; ingredients</span>
+        </div>
+      </div>
+
+      <span class="inline-flex items-center gap-gutter-xs px-gutter-sm py-gutter-xs rounded-full bg-light-surface-container-low text-light-primary font-label text-label-sm">
+        <span class="material-symbols-outlined text-body-md" aria-hidden="true">lock</span>
+        <span data-design-text-token="label-sm">Private</span>
+      </span>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-1 px-page-margin pt-gutter-lg pb-section flex flex-col gap-gutter-xl">
+
+      <!-- Intro & Mode Toggle -->
+      <section aria-label="Scan food or product" class="flex flex-col gap-gutter-md">
+        <div class="flex flex-col gap-gutter-xs">
+          <h1 class="font-headline text-headline-lg-mobile text-light-on-surface text-balance" data-design-text-token="headline-lg-mobile">
+            Scan any food or product
+          </h1>
+          <p class="font-body text-body-md text-light-on-surface-variant text-pretty" data-design-text-token="body-md">
+            See estimated calories, nutrition, and plain-English ingredients in seconds.
+          </p>
+        </div>
+
+        <!-- Mode Toggle -->
+        <div class="grid grid-cols-2 gap-gutter-sm">
+          <button id="scan-mode-food" type="button" aria-pressed="true" class="scan-mode-btn inline-flex items-center justify-center gap-gutter-xs px-gutter-md py-gutter-sm rounded-full bg-light-secondary-container text-light-on-secondary-container border border-light-primary font-label text-label-md transition-colors duration-state-change">
+            <span class="material-symbols-outlined text-body-lg" aria-hidden="true">restaurant</span>
+            <span data-design-text-token="label-md">Food &amp; Meal</span>
+          </button>
+
+          <button id="scan-mode-product" type="button" aria-pressed="false" class="scan-mode-btn inline-flex items-center justify-center gap-gutter-xs px-gutter-md py-gutter-sm rounded-full bg-light-surface-container-lowest text-light-on-surface border border-light-outline-variant font-label text-label-md transition-colors duration-state-change hover:bg-light-surface-container-low">
+            <span class="material-symbols-outlined text-body-lg" aria-hidden="true">qr_code_scanner</span>
+            <span data-design-text-token="label-md">Product Label</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Photo Scan Upload Card -->
+      <section aria-label="Upload or scan photo" class="flex flex-col gap-gutter-md">
+        <div class="bg-light-surface-container-lowest border-2 border-dashed border-light-outline-variant rounded-xl p-gutter-lg flex flex-col items-center text-center gap-gutter-md">
+          <span class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-light-secondary-container text-light-on-secondary-container">
+            <span class="material-symbols-outlined text-title-lg" aria-hidden="true">center_focus_weak</span>
+          </span>
+
+          <div class="flex flex-col gap-gutter-xs">
+            <h2 id="scan-drop-title" class="font-title text-title-md text-light-on-surface" data-design-text-token="title-md">Take or upload a meal photo</h2>
+            <p id="scan-drop-desc" class="font-body text-body-sm text-light-on-surface-variant text-pretty" data-design-text-token="body-sm">
+              Frame the full plate or ingredient label clearly in good light.
+            </p>
+          </div>
+
+          <div id="scan-preview-wrap" class="hidden w-full flex flex-col items-center gap-gutter-xs">
+            <img id="scan-preview-img" src alt="Scanned food or product preview" class="w-full h-44 object-cover rounded-lg border border-light-outline-variant">
+            <span id="scan-file-name" class="font-label text-label-sm text-light-primary" data-design-text-token="label-sm"></span>
+          </div>
+
+          <label for="scan-file-input" class="cursor-pointer inline-flex items-center justify-center gap-gutter-sm px-gutter-xl py-gutter-md rounded-full bg-light-primary text-light-on-primary font-label text-label-lg transition-colors duration-state-change ease-state-change hover:bg-light-primary-container">
+            <span class="material-symbols-outlined text-title-md" aria-hidden="true">photo_camera</span>
+            <span data-design-text-token="label-lg">Scan photo</span>
+            <input id="scan-file-input" type="file" accept="image/*" class="sr-only">
+          </label>
+        </div>
+
+        <!-- Sample Scan Presets -->
+        <div class="flex items-center gap-gutter-sm overflow-x-auto pb-gutter-xs" aria-label="Try sample scans">
+          <!-- COMPONENT: chip-filter-selected -->
+          <button data-component-id="chip-filter-selected" data-component-type="chip" data-component-variant="filter" aria-pressed="true" type="button" data-sample="avocado" class="sample-scan-chip shrink-0 px-gutter-md py-gutter-xs rounded-full bg-light-secondary-container border border-light-primary text-light-on-secondary-container font-label text-label-sm transition-colors duration-state-change">
+            <span data-design-text-token="label-sm">Avocado Toast &amp; Egg</span>
+          </button>
+
+          <!-- COMPONENT: chip-action -->
+          <button data-component-id="chip-action" data-component-type="chip" data-component-variant="action" type="button" data-sample="granola" class="sample-scan-chip shrink-0 px-gutter-md py-gutter-xs rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-label text-label-sm transition-colors duration-state-change hover:bg-light-secondary-container">
+            <span data-design-text-token="label-sm">Granola Bar</span>
+          </button>
+
+          <!-- COMPONENT: chip-action -->
+          <button data-component-id="chip-action" data-component-type="chip" data-component-variant="action" type="button" data-sample="cleanser" class="sample-scan-chip shrink-0 px-gutter-md py-gutter-xs rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-label text-label-sm transition-colors duration-state-change hover:bg-light-secondary-container">
+            <span data-design-text-token="label-sm">Skin Cleanser</span>
+          </button>
+        </div>
+      </section>
+
+      <!-- Scan Result Breakdown -->
+      <section aria-label="Calories and ingredients breakdown" class="flex flex-col gap-gutter-md">
+        <!-- COMPONENT: card-elevated -->
+        <article data-component-id="card-elevated" data-component-type="card" data-component-variant="elevated" class="bg-light-surface-container-lowest border border-light-outline-variant rounded-lg p-gutter-lg flex flex-col gap-gutter-md">
+          <header class="flex items-center justify-between gap-gutter-sm">
+            <div class="flex flex-col">
+              <h2 id="res-item-name" class="font-title text-title-lg text-light-on-surface" data-design-text-token="title-lg">Avocado Toast &amp; Egg</h2>
+              <span id="res-serving" class="font-body text-body-sm text-light-on-surface-variant" data-design-text-token="body-sm">1 serving (approx. 210g)</span>
+            </div>
+            <div class="flex flex-col items-end shrink-0">
+              <span id="res-calories" class="font-mono text-headline-md text-light-primary tabular-nums" data-design-text-token="headline-md">340 kcal</span>
+            </div>
+          </header>
+
+          <!-- Macro Grid -->
+          <div id="res-macro-grid" class="grid grid-cols-4 gap-gutter-xs bg-light-surface-container-low rounded-md p-gutter-sm text-center">
+            <div class="flex flex-col">
+              <span class="font-label text-label-sm text-light-on-surface-variant" data-design-text-token="label-sm">Protein</span>
+              <span id="res-protein" class="font-mono text-title-md text-light-on-surface tabular-nums" data-design-text-token="title-md">14g</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="font-label text-label-sm text-light-on-surface-variant" data-design-text-token="label-sm">Carbs</span>
+              <span id="res-carbs" class="font-mono text-title-md text-light-on-surface tabular-nums" data-design-text-token="title-md">28g</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="font-label text-label-sm text-light-on-surface-variant" data-design-text-token="label-sm">Fat</span>
+              <span id="res-fat" class="font-mono text-title-md text-light-on-surface tabular-nums" data-design-text-token="title-md">18g</span>
+            </div>
+            <div class="flex flex-col">
+              <span class="font-label text-label-sm text-light-on-surface-variant" data-design-text-token="label-sm">Fiber</span>
+              <span id="res-fiber" class="font-mono text-title-md text-light-on-surface tabular-nums" data-design-text-token="title-md">7g</span>
+            </div>
+          </div>
+
+          <!-- What's Inside -->
+          <div class="flex flex-col gap-gutter-xs">
+            <span class="font-label text-label-md text-light-on-surface" data-design-text-token="label-md">What’s inside</span>
+            <ul id="res-ingredients" class="flex flex-col gap-gutter-xs font-body text-body-sm text-light-on-surface-variant">
+              <li class="flex items-start gap-gutter-xs">
+                <span class="material-symbols-outlined text-body-md text-light-primary shrink-0 mt-0.5" aria-hidden="true">check_circle</span>
+                <span data-design-text-token="body-sm">Whole-grain bread — steady energy and B vitamins.</span>
+              </li>
+              <li class="flex items-start gap-gutter-xs">
+                <span class="material-symbols-outlined text-body-md text-light-primary shrink-0 mt-0.5" aria-hidden="true">check_circle</span>
+                <span data-design-text-token="body-sm">Avocado — heart-healthy fats and vitamin E for skin.</span>
+              </li>
+              <li class="flex items-start gap-gutter-xs">
+                <span class="material-symbols-outlined text-body-md text-light-primary shrink-0 mt-0.5" aria-hidden="true">check_circle</span>
+                <span data-design-text-token="body-sm">Egg — complete protein and biotin for hair strength.</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- Wellness & Allergy Note -->
+          <div class="bg-light-secondary-container text-light-on-secondary-container rounded-md p-gutter-sm">
+            <p id="res-note" class="font-body text-body-sm text-pretty" data-design-text-token="body-sm">
+              Wellness note: Balanced protein and healthy fats help keep you full. Contains wheat and egg.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      <!-- Educational & Allergy Disclaimer -->
+      <!-- COMPONENT: alert-info -->
+      <div role="alert" data-component-id="alert-info" data-component-type="alert" data-component-variant="info" class="flex items-start gap-gutter-md p-gutter-md rounded-lg bg-light-surface-container-low border border-light-outline-variant text-light-on-surface-variant">
+        <span class="material-symbols-outlined text-title-lg text-light-primary shrink-0 mt-0.5" aria-hidden="true">verified_user</span>
+        <span class="font-body text-body-sm flex-1" data-design-text-token="body-sm">
+          Calorie and ingredient details are estimates for everyday guidance. Always check the physical label for severe food or skin allergies.
+        </span>
+      </div>
+
+    </main>
+  </div>
+
+  <script>
+    (function () {
+      var modeFood = document.getElementById('scan-mode-food');
+      var modeProduct = document.getElementById('scan-mode-product');
+      var dropTitle = document.getElementById('scan-drop-title');
+      var dropDesc = document.getElementById('scan-drop-desc');
+
+      var activeModeClass = 'scan-mode-btn inline-flex items-center justify-center gap-gutter-xs px-gutter-md py-gutter-sm rounded-full bg-light-secondary-container text-light-on-secondary-container border border-light-primary font-label text-label-md transition-colors duration-state-change';
+      var inactiveModeClass = 'scan-mode-btn inline-flex items-center justify-center gap-gutter-xs px-gutter-md py-gutter-sm rounded-full bg-light-surface-container-lowest text-light-on-surface border border-light-outline-variant font-label text-label-md transition-colors duration-state-change hover:bg-light-surface-container-low';
+
+      if (modeFood && modeProduct) {
+        modeFood.addEventListener('click', function () {
+          modeFood.className = activeModeClass;
+          modeProduct.className = inactiveModeClass;
+          dropTitle.textContent = 'Take or upload a meal photo';
+          dropDesc.textContent = 'Frame the full plate clearly in good light to estimate calories and nutrients.';
+        });
+        modeProduct.addEventListener('click', function () {
+          modeProduct.className = activeModeClass;
+          modeFood.className = inactiveModeClass;
+          dropTitle.textContent = 'Scan a product or nutrition label';
+          dropDesc.textContent = 'Capture the front or ingredient list of any packaged food, skincare, or hair product.';
+        });
+      }
+
+      var samples = {
+        avocado: {
+          name: 'Avocado Toast & Egg',
+          serving: '1 serving (approx. 210g)',
+          cal: '340 kcal',
+          protein: '14g',
+          carbs: '28g',
+          fat: '18g',
+          fiber: '7g',
+          items: [
+            'Whole-grain bread — steady energy and B vitamins.',
+            'Avocado — heart-healthy fats and vitamin E for skin.',
+            'Egg — complete protein and biotin for hair strength.'
+          ],
+          note: 'Wellness note: Balanced protein and healthy fats help keep you full. Contains wheat and egg.'
+        },
+        granola: {
+          name: 'Honey Oat Granola Bar',
+          serving: '1 bar (40g)',
+          cal: '190 kcal',
+          protein: '4g',
+          carbs: '29g',
+          fat: '7g',
+          fiber: '3g',
+          items: [
+            'Rolled oats — whole-grain fiber for digestion.',
+            'Added sugar & honey (11g) — quick energy, moderate sugar.',
+            'Palm oil & almonds — adds crunch; check for tree-nut allergy.'
+          ],
+          note: 'Wellness note: Fine as an occasional snack, though high in added sugar for daily weight loss.'
+        },
+        cleanser: {
+          name: 'Gentle Hydrating Cleanser',
+          serving: 'Topical skin product',
+          cal: '0 kcal',
+          protein: '—',
+          carbs: '—',
+          fat: '—',
+          fiber: '—',
+          items: [
+            'Glycerin & Ceramides — hydrates and protects skin barrier.',
+            'Niacinamide — calms redness and helps fade dark spots.',
+            'Fragrance-free & sulfate-free — gentle for acne-prone skin.'
+          ],
+          note: 'Wellness note: Safe everyday choice for dry, sensitive, or breakout-prone skin.'
+        }
+      };
+
+      var resName = document.getElementById('res-item-name');
+      var resServing = document.getElementById('res-serving');
+      var resCal = document.getElementById('res-calories');
+      var resPro = document.getElementById('res-protein');
+      var resCarb = document.getElementById('res-carbs');
+      var resFat = document.getElementById('res-fat');
+      var resFib = document.getElementById('res-fiber');
+      var resIng = document.getElementById('res-ingredients');
+      var resNote = document.getElementById('res-note');
+
+      function renderSample(key) {
+        var d = samples[key];
+        if (!d) return;
+        resName.textContent = d.name;
+        resServing.textContent = d.serving;
+        resCal.textContent = d.cal;
+        resPro.textContent = d.protein;
+        resCarb.textContent = d.carbs;
+        resFat.textContent = d.fat;
+        resFib.textContent = d.fiber;
+        resNote.textContent = d.note;
+        resIng.innerHTML = d.items.map(function (txt) {
+          return '<li class="flex items-start gap-gutter-xs"><span class="material-symbols-outlined text-body-md text-light-primary shrink-0 mt-0.5" aria-hidden="true">check_circle</span><span data-design-text-token="body-sm">' + txt + '</span></li>';
+        }).join('');
+      }
+
+      var sampleChips = document.querySelectorAll('.sample-scan-chip');
+      var activeChipClass = 'sample-scan-chip shrink-0 px-gutter-md py-gutter-xs rounded-full bg-light-secondary-container border border-light-primary text-light-on-secondary-container font-label text-label-sm transition-colors duration-state-change';
+      var inactiveChipClass = 'sample-scan-chip shrink-0 px-gutter-md py-gutter-xs rounded-full bg-light-surface-container-low border border-light-outline-variant text-light-on-surface font-label text-label-sm transition-colors duration-state-change hover:bg-light-secondary-container';
+
+      sampleChips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          sampleChips.forEach(function (c) {
+            c.className = (c === chip) ? activeChipClass : inactiveChipClass;
+          });
+          renderSample(chip.getAttribute('data-sample'));
+        });
+      });
+
+      var fileInput = document.getElementById('scan-file-input');
+      var previewWrap = document.getElementById('scan-preview-wrap');
+      var previewImg = document.getElementById('scan-preview-img');
+      var fileNameEl = document.getElementById('scan-file-name');
+      if (fileInput && previewWrap && previewImg && fileNameEl) {
+        fileInput.addEventListener('change', function () {
+          if (fileInput.files && fileInput.files.length > 0) {
+            var file = fileInput.files[0];
+            previewImg.src = URL.createObjectURL(file);
+            fileNameEl.textContent = 'Scanned: ' + file.name;
+            previewWrap.classList.remove('hidden');
+          }
+        });
+      }
+    })();
+  </script>
+
+
+</body></html>

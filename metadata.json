@@ -1,0 +1,6 @@
+{
+  "name": "HealthMate AI",
+  "description": "Personal health, wellness, skin, hair, fitness, and nutrition companion powered by AI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

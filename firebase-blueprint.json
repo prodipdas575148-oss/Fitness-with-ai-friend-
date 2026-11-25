@@ -1,0 +1,240 @@
+{
+  "entities": {
+    "UserWellnessProfile": {
+      "title": "UserWellnessProfile",
+      "description": "Authenticated user's private wellness profile, daily hydration, steps, check-in, and plan tier.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Owner Firebase Auth UID."
+        },
+        "displayName": {
+          "type": "string",
+          "description": "Display name shown in the user's private profile."
+        },
+        "planTier": {
+          "type": "string",
+          "enum": ["free", "plus_49"],
+          "description": "Active HealthMate plan tier."
+        },
+        "waterGlasses": {
+          "type": "integer",
+          "description": "Water glasses logged today (0 to 20)."
+        },
+        "waterGoal": {
+          "type": "integer",
+          "description": "Daily water glass target (1 to 20)."
+        },
+        "steps": {
+          "type": "integer",
+          "description": "Footsteps logged today (0 to 100000)."
+        },
+        "stepsGoal": {
+          "type": "integer",
+          "description": "Daily step goal (1000 to 50000)."
+        },
+        "streakDays": {
+          "type": "integer",
+          "description": "Consecutive wellness check-in streak days."
+        },
+        "activeCheckIn": {
+          "type": "string",
+          "description": "Most recent wellness check-in status label."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the profile was created; clients must submit FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when the profile was updated; clients must submit FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "displayName",
+        "planTier",
+        "waterGlasses",
+        "waterGoal",
+        "steps",
+        "stepsGoal",
+        "streakDays",
+        "activeCheckIn",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "BpReading": {
+      "title": "BpReading",
+      "description": "Blood pressure reading saved by the user.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Owner Firebase Auth UID."
+        },
+        "systolic": {
+          "type": "integer",
+          "description": "Systolic pressure in mmHg (40 to 300)."
+        },
+        "diastolic": {
+          "type": "integer",
+          "description": "Diastolic pressure in mmHg (30 to 200)."
+        },
+        "pulse": {
+          "type": "integer",
+          "description": "Optional resting pulse in bpm (30 to 220)."
+        },
+        "category": {
+          "type": "string",
+          "description": "AHA reading category label."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when logged; clients must submit FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when updated; clients must submit FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "systolic",
+        "diastolic",
+        "category",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "RoutineTask": {
+      "title": "RoutineTask",
+      "description": "Daily morning, evening, or nutrition care habit item.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Owner Firebase Auth UID."
+        },
+        "title": {
+          "type": "string",
+          "description": "Short task name."
+        },
+        "subtitle": {
+          "type": "string",
+          "description": "Task timing or detail hint."
+        },
+        "period": {
+          "type": "string",
+          "enum": ["morning", "evening", "nutrition"],
+          "description": "Time-of-day routine group."
+        },
+        "done": {
+          "type": "boolean",
+          "description": "Whether the routine step is checked off for today."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when created; clients must submit FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when updated; clients must submit FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "title",
+        "subtitle",
+        "period",
+        "done",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "ConsultNote": {
+      "title": "ConsultNote",
+      "description": "Doctor consultation request note saved by the user.",
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "description": "Owner Firebase Auth UID."
+        },
+        "problemKey": {
+          "type": "string",
+          "description": "Selected symptom category key."
+        },
+        "summary": {
+          "type": "string",
+          "description": "User's plain-text symptom description."
+        },
+        "durationLabel": {
+          "type": "string",
+          "description": "How long symptoms have lasted."
+        },
+        "specialist": {
+          "type": "string",
+          "description": "Recommended specialist type."
+        },
+        "doctorName": {
+          "type": "string",
+          "description": "Requested on-call doctor name."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when created; clients must submit FieldValue.serverTimestamp()."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp when updated; clients must submit FieldValue.serverTimestamp()."
+        }
+      },
+      "required": [
+        "userId",
+        "problemKey",
+        "summary",
+        "durationLabel",
+        "specialist",
+        "doctorName",
+        "createdAt",
+        "updatedAt"
+      ]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": {
+        "$ref": "#/entities/UserWellnessProfile"
+      },
+      "description": "Private wellness profile, daily hydration, steps, and plan status for an authenticated user."
+    },
+    "/users/{userId}/bpReadings/{readingId}": {
+      "schema": {
+        "$ref": "#/entities/BpReading"
+      },
+      "description": "Blood pressure reading history owned by the authenticated user."
+    },
+    "/users/{userId}/routineTasks/{taskId}": {
+      "schema": {
+        "$ref": "#/entities/RoutineTask"
+      },
+      "description": "Daily care routine checklist items owned by the authenticated user."
+    },
+    "/users/{userId}/consultNotes/{noteId}": {
+      "schema": {
+        "$ref": "#/entities/ConsultNote"
+      },
+      "description": "Doctor consultation request notes owned by the authenticated user."
+    }
+  }
+}
